@@ -6,15 +6,729 @@ export default function TaskOnePage() {
     return (
         <main className="min-h-screen overflow-x-hidden bg-white text-slate-950">
             {/* =========================================================
-    SECTION 01 — STORAGE INFRASTRUCTURE
+    TASK 1 — MAIN ARCHITECTURE DIAGRAM
 ========================================================= */}
 
-            <section className="border-t border-slate-200 bg-slate-50">
+            <section className="bg-white">
                 <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-8 lg:px-10">
+
+                    {/* Diagram heading */}
+                    <div className="max-w-4xl">
+                        <p className="text-sm font-extrabold uppercase tracking-[0.28em] text-blue-600 sm:text-base">
+                            Task 1 · Solution Architecture
+                        </p>
+
+                        <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+                            Azure Storage Solution Architecture
+                        </h1>
+
+                        <p className="mt-5 max-w-3xl leading-7 text-slate-600">
+                            This architecture diagram provides an overview of the Azure
+                            Storage solution implemented throughout Task 1. It shows the
+                            relationship between the primary storage environment,
+                            event-driven Azure Function automation, backup storage and the
+                            supporting security, protection and storage services.
+                        </p>
+                    </div>
+                    {/* Implementation Naming Notice */}
+                    <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-lg">
+                                !
+                            </div>
+
+                            <div>
+                                <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-700">
+                                    Implementation Notice · Resource Naming
+                                </p>
+
+                                <p className="mt-2 text-sm leading-6 text-slate-700">
+                                    The Azure resources implemented in this assessment use descriptive
+                                    names that differ slightly from the naming examples provided in the
+                                    assessment scenario. The functional roles remain equivalent:
+                                    <span className="font-semibold text-slate-900">
+                                        {" "}st270907283assessment
+                                    </span>{" "}
+                                    represents the primary storage account,
+                                    <span className="font-semibold text-slate-900">
+                                        {" "}st270907283backup
+                                    </span>{" "}
+                                    represents the backup storage account, and
+                                    <span className="font-semibold text-slate-900">
+                                        {" "}func-270907283-blob-backup
+                                    </span>{" "}
+                                    represents the Azure Function App. These names are used consistently
+                                    throughout the implementation, architecture diagrams and evidence.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Main architecture */}
+                    <div className="mt-12 overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-b from-blue-50 to-white shadow-sm">
+
+                        {/* Resource Group */}
+                        <div className="border-b border-blue-100 bg-blue-600 px-6 py-7 text-center text-white">
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-100">
+                                Azure Resource Group
+                            </p>
+
+                            <p className="mt-2 text-xl font-bold">
+                                270907283-azure-assessment-rg
+                            </p>
+
+                            <p className="mt-1 text-sm text-blue-100">
+                                Australia East
+                            </p>
+                        </div>
+
+                        <div className="p-6 sm:p-8 lg:p-10">
+
+                            {/* Primary architecture flow */}
+                            <div className="grid gap-6 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-center">
+
+                                {/* Primary Storage */}
+                                <div className="rounded-2xl border border-blue-200 bg-white p-6 shadow-sm">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-xl">
+                                            ☁
+                                        </div>
+
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                                                Primary Storage
+                                            </p>
+
+                                            <h3 className="mt-1 break-words font-bold text-slate-950">
+                                                st270907283assessment
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                                            Blob Container
+                                        </p>
+
+                                        <p className="mt-2 font-semibold text-slate-950">
+                                            assessment-data
+                                        </p>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Operational source container containing the
+                                            assessment blob objects.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Arrow */}
+                                <div className="text-center">
+                                    <div className="text-3xl font-bold text-blue-600">
+                                        →
+                                    </div>
+
+                                    <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        Blob event
+                                    </p>
+                                </div>
+
+                                {/* Azure Function */}
+                                <div className="rounded-2xl border border-violet-200 bg-violet-50 p-6 shadow-sm">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-2xl">
+                                            ⚡
+                                        </div>
+
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-violet-600">
+                                                Azure Function
+                                            </p>
+
+                                            <h3 className="mt-1 font-bold text-slate-950">
+                                                blobBackupTrigger
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <p className="mt-5 text-sm leading-6 text-slate-600">
+                                        Detects newly created blobs in the primary container
+                                        and automatically initiates the backup operation.
+                                    </p>
+
+                                    <div className="mt-4 rounded-xl bg-white p-3 text-sm font-semibold text-violet-700">
+                                        Event-driven serverless automation
+                                    </div>
+                                </div>
+
+                                {/* Arrow */}
+                                <div className="text-center">
+                                    <div className="text-3xl font-bold text-blue-600">
+                                        →
+                                    </div>
+
+                                    <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        Automated copy
+                                    </p>
+                                </div>
+
+                                {/* Backup Storage */}
+                                <div className="rounded-2xl border border-blue-200 bg-white p-6 shadow-sm">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-xl">
+                                            ☁
+                                        </div>
+
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                                                Backup Storage
+                                            </p>
+
+                                            <h3 className="mt-1 break-words font-bold text-slate-950">
+                                                st270907283backup
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                                            Blob Container
+                                        </p>
+
+                                        <p className="mt-2 font-semibold text-slate-950">
+                                            backup-data
+                                        </p>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Separate destination used to store automatically
+                                            created backup copies.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {/* Verification example */}
+                            <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
+                                            Verified End-to-End Flow
+                                        </p>
+
+                                        <p className="mt-2 font-semibold text-slate-950">
+                                            task1-automated-backup-test.txt · 383 B
+                                        </p>
+                                    </div>
+
+                                    <div className="text-sm font-semibold text-emerald-700">
+                                        Source → Function → Backup ✓
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Supporting capabilities */}
+                            <div className="mt-10">
+                                <div className="text-center">
+                                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-600">
+                                        Storage Capabilities & Controls
+                                    </p>
+
+                                    <h3 className="mt-2 text-xl font-bold text-slate-950">
+                                        Supporting Task 1 Services
+                                    </h3>
+                                </div>
+
+                                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+
+                                    {/* RBAC */}
+                                    <div className="rounded-2xl border border-blue-200 bg-blue-50 p-5">
+                                        <div className="text-2xl">🔐</div>
+
+                                        <h4 className="mt-3 font-bold text-slate-950">
+                                            RBAC
+                                        </h4>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Least-privilege access using Azure role-based
+                                            access control.
+                                        </p>
+                                    </div>
+
+                                    {/* Soft Delete */}
+                                    <div className="rounded-2xl border border-violet-200 bg-violet-50 p-5">
+                                        <div className="text-2xl">♻</div>
+
+                                        <h4 className="mt-3 font-bold text-slate-950">
+                                            Soft Delete & Versioning
+                                        </h4>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Protects blob data and supports recovery of
+                                            deleted or previous versions.
+                                        </p>
+                                    </div>
+
+                                    {/* Lifecycle */}
+                                    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                                        <div className="text-2xl">↻</div>
+
+                                        <h4 className="mt-3 font-bold text-slate-950">
+                                            Lifecycle Management
+                                        </h4>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Automatically moves qualifying older blobs to
+                                            the Cool access tier.
+                                        </p>
+                                    </div>
+
+                                    {/* File Share */}
+                                    <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                                        <div className="text-2xl">📁</div>
+
+                                        <h4 className="mt-3 font-bold text-slate-950">
+                                            Azure File Share
+                                        </h4>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Managed cloud file storage accessible through
+                                            SMB.
+                                        </p>
+                                    </div>
+
+                                    {/* Table Storage */}
+                                    <div className="rounded-2xl border border-purple-200 bg-purple-50 p-5">
+                                        <div className="text-2xl">▦</div>
+
+                                        <h4 className="mt-3 font-bold text-slate-950">
+                                            Table Storage
+                                        </h4>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            NoSQL key-value storage for structured
+                                            assessment records.
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {/* Architecture interpretation */}
+                            <div className="mt-10 grid gap-6 border-t border-slate-200 pt-8 md:grid-cols-3">
+
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                                        Data Layer
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                                        Azure Storage provides Blob Storage, Azure Files and
+                                        Table Storage for the different workload types.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-wider text-violet-600">
+                                        Automation Layer
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                                        Azure Functions responds to Blob Storage events and
+                                        performs the automated backup operation.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                                        Protection Layer
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                                        RBAC, soft delete, versioning and lifecycle policies
+                                        provide access control, recoverability and storage
+                                        optimisation.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Figure caption */}
+                    <div className="mt-5 border-l-4 border-blue-600 pl-4">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                            Figure A1 - Task 1 Architecture Diagram
+                        </p>
+
+                        <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-600">
+                            Overall architecture of the Azure Storage solution implemented
+                            for Task 1, showing the relationship between the primary Blob
+                            Storage environment, event-driven Azure Function automation,
+                            separate backup storage and the supporting storage, security
+                            and data-protection capabilities.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            {/* Architecture Visualisation & Learning Rationale */}
+            <section className="mx-auto mt-10 max-w-6xl px-6">
+                <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 md:p-8">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
+                        Architecture Visualisation & Learning Rationale
+                    </p>
+
+                    <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
+                        Why This Architecture Diagram Matters
+                    </h3>
+
+                    <p className="mt-4 max-w-4xl text-sm leading-7 text-slate-600">
+                        Figure A1 provides a consolidated visual representation of the Azure
+                        architecture implemented throughout Task 1. While the individual
+                        evidence screenshots demonstrate that specific Azure resources,
+                        configurations and tests were completed, the architecture diagram
+                        shows how these components operate together as one cloud solution.
+                    </p>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-3">
+                    {/* Proof of Concept */}
+                    <article className="rounded-2xl border border-blue-200 bg-white p-6 shadow-sm">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                            01 · Proof of Concept
+                        </p>
+
+                        <h4 className="mt-3 text-lg font-bold text-slate-950">
+                            Connecting the Evidence
+                        </h4>
+
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                            The diagram complements the practical evidence rather than
+                            replacing it. Screenshots provide direct evidence that individual
+                            resources were configured and tested, while the architecture
+                            diagram explains the relationship and data flow between those
+                            resources.
+                        </p>
+
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                            This allows the automated backup workflow to be followed visually
+                            from the source Blob Storage container, through the Azure Function,
+                            and into the separate backup destination.
+                        </p>
+                    </article>
+
+                    {/* Architecture Understanding */}
+                    <article className="rounded-2xl border border-violet-200 bg-white p-6 shadow-sm">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-violet-600">
+                            02 · Architecture Understanding
+                        </p>
+
+                        <h4 className="mt-3 text-lg font-bold text-slate-950">
+                            Seeing Azure as a System
+                        </h4>
+
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                            The diagram helps me understand Azure services as connected parts
+                            of an architecture rather than as isolated resources. I can
+                            visually follow the sequence from storage, to an event, to
+                            serverless processing, and finally to the backup destination.
+                        </p>
+
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                            It also shows where RBAC, soft delete, versioning, lifecycle
+                            management, Azure Files and Table Storage contribute security,
+                            protection and additional storage capabilities.
+                        </p>
+                    </article>
+
+                    {/* Learning Journey */}
+                    <article className="rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-600">
+                            03 · Learning Journey
+                        </p>
+
+                        <h4 className="mt-3 text-lg font-bold text-slate-950">
+                            Visualising to Understand
+                        </h4>
+
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                            Visualising cloud infrastructure has become an important part of
+                            my learning process because it helps me understand and remember
+                            the relationships between services more effectively than viewing
+                            each configuration independently.
+                        </p>
+
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                            My goal is not simply to learn how to configure individual Azure
+                            resources, but to understand why they are used, how they
+                            communicate, and how they can be combined to meet a business
+                            requirement.
+                        </p>
+                    </article>
+                </div>
+
+                {/* Key takeaway */}
+                <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                        Key Learning Principle
+                    </p>
+
+                    <p className="mt-3 text-lg font-semibold leading-8 text-slate-900">
+                        Screenshots prove the implementation. Architecture diagrams explain
+                        the implementation.
+                    </p>
+
+                    <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-600">
+                        Using both approaches allows this report to demonstrate not only that
+                        the Azure solution was successfully implemented, but also my
+                        understanding of how the individual cloud services form a complete
+                        architecture.
+                    </p>
+                </div>
+            </section>
+
+
+            {/* ====================== SECTION 1 — STORAGE INFRASTRUCTURE================================= */}
+
+            <section className="border-t border-slate-200 bg-slate-50">
+
+                <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-8 lg:px-10">
+
                     {/* Section heading */}
                     <p className="text-sm font-extrabold uppercase tracking-[0.28em] text-blue-600 sm:text-base">
                         01 · Storage Infrastructure
                     </p>
+                    {/* =========================================================
+    SECTION 01 ARCHITECTURE DIAGRAM
+========================================================= */}
+                    <div className="mt-12">
+                        <div className="mb-6">
+                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
+                                Section Architecture
+                            </p>
+
+                            <h3 className="mt-2 text-xl font-bold text-slate-950">
+                                Azure Storage Infrastructure
+                            </h3>
+
+                            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
+                                This diagram isolates the storage foundation implemented for Task 1,
+                                showing how the resource group contains the primary Azure Storage
+                                account, Blob Storage service, assessment container and the blob
+                                objects used throughout the practical implementation.
+                            </p>
+                        </div>
+
+                        <div className="overflow-hidden rounded-3xl border border-blue-200 bg-white shadow-sm">
+                            {/* Resource Group Header */}
+                            <div className="bg-blue-600 px-6 py-5 text-center text-white">
+                                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-100">
+                                    Azure Resource Group
+                                </p>
+
+                                <p className="mt-1 text-lg font-bold">
+                                    270907283-azure-assessment-rg
+                                </p>
+
+                                <p className="mt-1 text-xs text-blue-100">
+                                    Australia East
+                                </p>
+                            </div>
+
+                            <div className="bg-slate-50 p-6 md:p-8">
+
+                                {/* Main Architecture Flow */}
+                                <div className="grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
+
+                                    {/* Storage Account */}
+                                    <div className="rounded-2xl border border-blue-200 bg-white p-5 shadow-sm">
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-100 text-lg">
+                                            ☁
+                                        </div>
+
+                                        <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-600">
+                                            Storage Account
+                                        </p>
+
+                                        <h4 className="mt-2 break-words text-sm font-bold text-slate-950">
+                                            st270907283assessment
+                                        </h4>
+
+                                        <p className="mt-3 text-xs leading-5 text-slate-600">
+                                            Central Azure Storage resource used to host the
+                                            assessment storage services.
+                                        </p>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden items-center justify-center lg:flex">
+                                        <div className="text-center">
+                                            <div className="text-xl font-bold text-blue-500">→</div>
+                                            <p className="mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                                                Provides
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Blob Service */}
+                                    <div className="rounded-2xl border border-sky-200 bg-white p-5 shadow-sm">
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-100 text-lg">
+                                            ◉
+                                        </div>
+
+                                        <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-sky-600">
+                                            Storage Service
+                                        </p>
+
+                                        <h4 className="mt-2 text-sm font-bold text-slate-950">
+                                            Azure Blob Storage
+                                        </h4>
+
+                                        <p className="mt-3 text-xs leading-5 text-slate-600">
+                                            Object storage service used for unstructured assessment
+                                            data and automated processing.
+                                        </p>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden items-center justify-center lg:flex">
+                                        <div className="text-center">
+                                            <div className="text-xl font-bold text-blue-500">→</div>
+                                            <p className="mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                                                Contains
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Container */}
+                                    <div className="rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm">
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-lg">
+                                            ▣
+                                        </div>
+
+                                        <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-600">
+                                            Blob Container
+                                        </p>
+
+                                        <h4 className="mt-2 text-sm font-bold text-slate-950">
+                                            assessment-data
+                                        </h4>
+
+                                        <p className="mt-3 text-xs leading-5 text-slate-600">
+                                            Primary source container used to store the blob objects
+                                            created and tested during Task 1.
+                                        </p>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden items-center justify-center lg:flex">
+                                        <div className="text-center">
+                                            <div className="text-xl font-bold text-blue-500">→</div>
+                                            <p className="mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                                                Stores
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Blob Objects */}
+                                    <div className="rounded-2xl border border-violet-200 bg-white p-5 shadow-sm">
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-100 text-lg">
+                                            ▤
+                                        </div>
+
+                                        <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-violet-600">
+                                            Blob Objects
+                                        </p>
+
+                                        <h4 className="mt-2 text-sm font-bold text-slate-950">
+                                            Assessment Data
+                                        </h4>
+
+                                        <p className="mt-3 text-xs leading-5 text-slate-600">
+                                            Block blobs used to verify storage, automation,
+                                            protection and lifecycle behaviour.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Configuration Characteristics */}
+                                <div className="mt-7 border-t border-slate-200 pt-6">
+                                    <p className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                                        Storage Account Configuration
+                                    </p>
+
+                                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4 text-center">
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                                Region
+                                            </p>
+                                            <p className="mt-1 text-sm font-semibold text-slate-900">
+                                                Australia East
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4 text-center">
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                                Performance
+                                            </p>
+                                            <p className="mt-1 text-sm font-semibold text-slate-900">
+                                                Standard
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4 text-center">
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                                Replication
+                                            </p>
+                                            <p className="mt-1 text-sm font-semibold text-slate-900">
+                                                LRS
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4 text-center">
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                                Access Tier
+                                            </p>
+                                            <p className="mt-1 text-sm font-semibold text-slate-900">
+                                                Hot
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Architecture Meaning */}
+                                <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-600">
+                                        Architecture Relationship
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-700">
+                                        The resource group provides the management boundary for the
+                                        solution. Within it, the storage account provides Azure Blob
+                                        Storage, where the{" "}
+                                        <span className="font-semibold text-slate-900">
+                                            assessment-data
+                                        </span>{" "}
+                                        container stores the block blobs used by the later automation,
+                                        security, recovery and lifecycle-management stages.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Figure Caption */}
+                        <div className="mt-5 border-l-4 border-blue-600 pl-4">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                                Figure A2 · Storage Infrastructure Architecture
+                            </p>
+
+                            <p className="mt-2 text-xs leading-5 text-slate-600">
+                                Logical architecture of the primary Azure Storage environment
+                                implemented for Task 1, showing the relationship between the resource
+                                group, storage account, Blob Storage service, assessment-data
+                                container and stored blob objects.
+                            </p>
+                        </div>
+                    </div> <br />
 
                     <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
                         Azure Storage Account & Blob Storage
@@ -134,6 +848,315 @@ export default function TaskOnePage() {
                         <p className="text-sm font-extrabold uppercase tracking-[0.28em] text-blue-600 sm:text-base">
                             02 · Function Automation
                         </p>
+                        {/* =========================================================
+    FIGURE A3 — FUNCTION AUTOMATION ARCHITECTURE
+========================================================= */}
+                        <div className="mt-12">
+                            <div className="mb-6">
+                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-600">
+                                    Section Architecture
+                                </p>
+
+                                <h3 className="mt-2 text-xl font-bold text-slate-950">
+                                    Event-Driven Blob Backup Automation
+                                </h3>
+
+                                <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
+                                    This diagram isolates the automated backup workflow implemented for
+                                    Task 1. A newly created blob in the primary assessment container
+                                    generates a storage event, which invokes the Azure Function and
+                                    automatically copies the blob into a separate backup storage
+                                    environment.
+                                </p>
+                            </div>
+
+                            <div className="overflow-hidden rounded-3xl border border-violet-200 bg-white shadow-sm">
+                                {/* Header */}
+                                <div className="bg-violet-600 px-6 py-5 text-center text-white">
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-100">
+                                        Azure Function Automation
+                                    </p>
+
+                                    <p className="mt-1 text-lg font-bold">
+                                        Event-Driven Blob Backup Workflow
+                                    </p>
+
+                                    <p className="mt-1 text-xs text-violet-100">
+                                        Source → Event → Function → Backup → Verification
+                                    </p>
+                                </div>
+
+                                <div className="bg-slate-50 p-6 md:p-8">
+                                    {/* Main Flow */}
+                                    <div className="grid items-stretch gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
+
+                                        {/* Stage 1 */}
+                                        <div className="rounded-2xl border border-blue-200 bg-white p-5 shadow-sm">
+                                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-100 text-lg">
+                                                ☁
+                                            </div>
+
+                                            <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-600">
+                                                01 · Source
+                                            </p>
+
+                                            <h4 className="mt-2 text-sm font-bold text-slate-950">
+                                                assessment-data
+                                            </h4>
+
+                                            <p className="mt-3 text-xs leading-5 text-slate-600">
+                                                Primary Blob Storage container monitored for newly
+                                                created assessment objects.
+                                            </p>
+
+                                            <div className="mt-4 rounded-xl bg-blue-50 p-3">
+                                                <p className="text-[9px] font-bold uppercase tracking-wider text-blue-500">
+                                                    Verification Object
+                                                </p>
+
+                                                <p className="mt-1 break-words text-xs font-semibold text-slate-900">
+                                                    task1-automated-backup-test.txt
+                                                </p>
+
+                                                <p className="mt-1 text-[11px] text-slate-500">
+                                                    383 B
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Arrow */}
+                                        <div className="hidden items-center justify-center lg:flex">
+                                            <div className="text-center">
+                                                <div className="text-xl font-bold text-blue-500">→</div>
+                                                <p className="mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                                                    Blob Event
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Stage 2 */}
+                                        <div className="rounded-2xl border border-violet-200 bg-white p-5 shadow-sm">
+                                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-100 text-lg">
+                                                ⚡
+                                            </div>
+
+                                            <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-violet-600">
+                                                02 · Trigger
+                                            </p>
+
+                                            <h4 className="mt-2 text-sm font-bold text-slate-950">
+                                                blobBackupTrigger
+                                            </h4>
+
+                                            <p className="mt-3 text-xs leading-5 text-slate-600">
+                                                Azure Function Blob trigger detects the new object and
+                                                invokes the backup handler automatically.
+                                            </p>
+
+                                            <div className="mt-4 rounded-xl bg-violet-50 p-3">
+                                                <p className="text-[9px] font-bold uppercase tracking-wider text-violet-500">
+                                                    Trigger Path
+                                                </p>
+
+                                                <p className="mt-1 break-words text-xs font-semibold text-slate-900">
+                                                    assessment-data/{"{name}"}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Arrow */}
+                                        <div className="hidden items-center justify-center lg:flex">
+                                            <div className="text-center">
+                                                <div className="text-xl font-bold text-violet-500">→</div>
+                                                <p className="mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                                                    Execute
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Stage 3 */}
+                                        <div className="rounded-2xl border border-amber-200 bg-white p-5 shadow-sm">
+                                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-lg">
+                                                ↻
+                                            </div>
+
+                                            <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-amber-600">
+                                                03 · Automation
+                                            </p>
+
+                                            <h4 className="mt-2 text-sm font-bold text-slate-950">
+                                                Backup Operation
+                                            </h4>
+
+                                            <p className="mt-3 text-xs leading-5 text-slate-600">
+                                                The Function reads the incoming blob and uses the backup
+                                                storage connection to write the same object into the
+                                                destination container.
+                                            </p>
+
+                                            <div className="mt-4 rounded-xl bg-amber-50 p-3">
+                                                <p className="text-[9px] font-bold uppercase tracking-wider text-amber-600">
+                                                    Operation
+                                                </p>
+
+                                                <p className="mt-1 text-xs font-semibold text-slate-900">
+                                                    uploadData(blob)
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Arrow */}
+                                        <div className="hidden items-center justify-center lg:flex">
+                                            <div className="text-center">
+                                                <div className="text-xl font-bold text-emerald-500">→</div>
+                                                <p className="mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                                                    Copy
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Stage 4 */}
+                                        <div className="rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm">
+                                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-lg">
+                                                ✓
+                                            </div>
+
+                                            <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-600">
+                                                04 · Destination
+                                            </p>
+
+                                            <h4 className="mt-2 text-sm font-bold text-slate-950">
+                                                backup-data
+                                            </h4>
+
+                                            <p className="mt-3 text-xs leading-5 text-slate-600">
+                                                Separate backup container receives the automatically
+                                                generated copy of the source blob.
+                                            </p>
+
+                                            <div className="mt-4 rounded-xl bg-emerald-50 p-3">
+                                                <p className="text-[9px] font-bold uppercase tracking-wider text-emerald-600">
+                                                    Verified Backup
+                                                </p>
+
+                                                <p className="mt-1 break-words text-xs font-semibold text-slate-900">
+                                                    task1-automated-backup-test.txt
+                                                </p>
+
+                                                <p className="mt-1 text-[11px] text-slate-500">
+                                                    383 B ✓
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Infrastructure Boundary */}
+                                    <div className="mt-7 grid gap-4 md:grid-cols-3">
+                                        <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+                                            <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-blue-600">
+                                                Primary Storage
+                                            </p>
+
+                                            <p className="mt-2 break-words text-xs font-semibold text-slate-900">
+                                                st270907283assessment
+                                            </p>
+
+                                            <p className="mt-1 text-[11px] leading-5 text-slate-600">
+                                                Hosts the operational assessment-data container.
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-violet-200 bg-violet-50 p-4">
+                                            <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-violet-600">
+                                                Serverless Processing
+                                            </p>
+
+                                            <p className="mt-2 text-xs font-semibold text-slate-900">
+                                                Azure Functions
+                                            </p>
+
+                                            <p className="mt-1 text-[11px] leading-5 text-slate-600">
+                                                Responds automatically to Blob Storage events.
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                                            <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-emerald-600">
+                                                Backup Storage
+                                            </p>
+
+                                            <p className="mt-2 break-words text-xs font-semibold text-slate-900">
+                                                st270907283backup
+                                            </p>
+
+                                            <p className="mt-1 text-[11px] leading-5 text-slate-600">
+                                                Hosts the separate backup-data destination container.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Verified Flow */}
+                                    <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                                        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                                            <div>
+                                                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">
+                                                    Verified End-to-End Flow
+                                                </p>
+
+                                                <p className="mt-2 text-sm font-semibold text-slate-950">
+                                                    task1-automated-backup-test.txt · 383 B
+                                                </p>
+                                            </div>
+
+                                            <div className="text-sm font-bold text-emerald-700">
+                                                Source → Trigger → Function → Backup ✓
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Architecture Interpretation */}
+                                    <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-violet-600">
+                                            Architecture Relationship
+                                        </p>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-700">
+                                            The architecture uses an event-driven model rather than a
+                                            manual copy process. Blob creation in{" "}
+                                            <span className="font-semibold text-slate-950">
+                                                assessment-data
+                                            </span>{" "}
+                                            acts as the event source. The{" "}
+                                            <span className="font-semibold text-slate-950">
+                                                blobBackupTrigger
+                                            </span>{" "}
+                                            Function responds to that event and writes the object to the
+                                            separate{" "}
+                                            <span className="font-semibold text-slate-950">
+                                                backup-data
+                                            </span>{" "}
+                                            container, separating operational data from its automated
+                                            backup copy.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Figure Caption */}
+                            <div className="mt-4 border-l-4 border-violet-500 pl-4">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-violet-600">
+                                    Figure A3 · Event-Driven Backup Architecture
+                                </p>
+
+                                <p className="mt-2 text-xs leading-5 text-slate-600">
+                                    Event-driven Azure Blob Storage backup architecture implemented and
+                                    re-verified during Task 1. A newly uploaded blob in the primary
+                                    assessment-data container invokes the blobBackupTrigger Azure
+                                    Function, which automatically writes the object to the separate
+                                    backup-data destination.
+                                </p>
+                            </div>
+                        </div> <br />
 
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
                             Event-Driven Blob Backup with Azure Functions
@@ -156,17 +1179,17 @@ export default function TaskOnePage() {
                         </p>
 
                         {/* =====================================================
-        AUTOMATED BACKUP WORKFLOW
-    ====================================================== */}
+    AUTOMATED BACKUP WORKFLOW
+====================================================== */}
 
-                        <div className="mt-10 rounded-2xl border border-blue-200 bg-blue-50/60 p-6">
-                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-700">
+                        <div className="mt-10 rounded-2xl border border-violet-200 bg-violet-50/50 p-6">
+                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-700">
                                 Automated Backup Workflow
                             </p>
 
                             <div className="mt-5 grid gap-4 md:grid-cols-5 md:items-center">
                                 {/* Source */}
-                                <div className="min-w-0 rounded-xl border border-blue-100 bg-white p-5">
+                                <div className="min-w-0 rounded-xl border border-blue-200 bg-white p-5">
                                     <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
                                         Primary Source
                                     </p>
@@ -175,18 +1198,22 @@ export default function TaskOnePage() {
                                         assessment-data
                                     </p>
 
-                                    <p className="mt-1 text-sm text-slate-600">
-                                        backup-text-01.txt · 74 B
+                                    <p className="mt-1 break-words text-sm text-slate-600">
+                                        task1-automated-backup-test.txt
+                                    </p>
+
+                                    <p className="mt-1 text-xs font-semibold text-blue-600">
+                                        383 B
                                     </p>
                                 </div>
 
-                                <div className="text-center text-2xl font-semibold text-blue-600">
+                                <div className="text-center text-2xl font-semibold text-violet-500">
                                     →
                                 </div>
 
                                 {/* Function */}
-                                <div className="min-w-0 rounded-xl border border-blue-100 bg-white p-5">
-                                    <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                                <div className="min-w-0 rounded-xl border border-violet-200 bg-white p-5">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-violet-600">
                                         Automation
                                     </p>
 
@@ -197,15 +1224,19 @@ export default function TaskOnePage() {
                                     <p className="mt-1 text-sm text-slate-600">
                                         Azure Blob Trigger
                                     </p>
+
+                                    <p className="mt-1 text-xs font-semibold text-violet-600">
+                                        Event-driven execution
+                                    </p>
                                 </div>
 
-                                <div className="text-center text-2xl font-semibold text-blue-600">
+                                <div className="text-center text-2xl font-semibold text-emerald-500">
                                     →
                                 </div>
 
                                 {/* Destination */}
-                                <div className="min-w-0 rounded-xl border border-blue-100 bg-white p-5">
-                                    <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                                <div className="min-w-0 rounded-xl border border-emerald-200 bg-white p-5">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-emerald-600">
                                         Backup Destination
                                     </p>
 
@@ -213,119 +1244,197 @@ export default function TaskOnePage() {
                                         backup-data
                                     </p>
 
-                                    <p className="mt-1 text-sm text-slate-600">
-                                        backup-text-01.txt · 74 B
+                                    <p className="mt-1 break-words text-sm text-slate-600">
+                                        task1-automated-backup-test.txt
+                                    </p>
+
+                                    <p className="mt-1 text-xs font-semibold text-emerald-600">
+                                        383 B ✓
                                     </p>
                                 </div>
                             </div>
 
                             <p className="mt-5 text-sm leading-6 text-slate-600">
-                                Test object: <strong>backup-text-01.txt</strong>. The same
-                                74-byte blob was detected in the source container, processed
-                                automatically by the Azure Function and written to the
-                                designated backup destination.
+                                Verification object:{" "}
+                                <strong>task1-automated-backup-test.txt</strong>. The same
+                                383-byte blob was uploaded to the{" "}
+                                <strong>assessment-data</strong> source container, detected
+                                automatically by <strong>blobBackupTrigger</strong> and written
+                                to the separate <strong>backup-data</strong> destination.
                             </p>
                         </div>
 
                         {/* =====================================================
-        PROOF OF PROCESS
-    ====================================================== */}
+    PROOF OF PROCESS
+====================================================== */}
 
                         <ImplementationJourney
                             title="Building the Automated Blob Backup Workflow"
-                            description="These stages document the progression from creating the Azure Functions project and configuring the Blob trigger to testing the Function runtime, 
-                            successfully processing a storage event and verifying the resulting backup in Azure Storage."
+                            description="These stages document the progression from establishing the Azure backup resources and developing the Blob trigger Function to deploying and confirming the Function App as a running Azure resource. The separate primary evidence below then verifies the completed workflow using a fresh controlled end-to-end test."
                             items={[
                                 {
                                     figure: 5,
                                     stage: "Stage 01",
-                                    title: "Azure Functions Project Setup",
+                                    title: "Azure Backup Architecture Resources",
                                     description:
-                                        "Created the Azure Functions project and established the local development environment required to build and test the event-driven Blob Storage automation.",
+                                        "Established the Azure resources required for the automated backup architecture, including the primary storage account, separate backup storage account, Function App and supporting Application Insights resource within the assessment resource group.",
                                     image:
-                                        "/evidence/task-1/02-function-automation/journey/01-azure-functions-project-setup.png",
-                                    alt: "Visual Studio Code showing the Azure Functions project setup",
+                                        "/evidence/task-1/02-function-automation/journey/01-azure-backup-architecture-resources.png",
+                                    alt:
+                                        "Azure resource group showing the Function App, Application Insights, primary storage account and backup storage account used by the automated backup solution",
                                     caption:
-                                        "Azure Functions project established in Visual Studio Code to develop and test the event-driven Blob Storage automation.",
+                                        "Azure resource group containing the Function App, monitoring resource and separate primary and backup storage accounts used by the Blob backup architecture.",
                                 },
                                 {
                                     figure: 6,
                                     stage: "Stage 02",
                                     title: "Blob Trigger Function Developed",
                                     description:
-                                        "Configured the blobBackupTrigger Function to monitor the assessment-data container and respond automatically when a new blob object was detected.",
+                                        "Developed the blobBackupTrigger Function to monitor the assessment-data container and respond automatically when a new blob object was detected.",
                                     image:
                                         "/evidence/task-1/02-function-automation/journey/02-blob-trigger-function-code.png",
-                                    alt: "Visual Studio Code showing the blobBackupTrigger Azure Function code",
+                                    alt:
+                                        "Visual Studio Code showing the blobBackupTrigger Azure Function code",
                                     caption:
-                                        "Blob trigger Function configured to monitor the assessment-data container and respond automatically to new blob events.",
+                                        "Blob trigger Function configured to monitor assessment-data and execute the automated backup operation when new Blob Storage objects are detected.",
                                 },
                                 {
                                     figure: 7,
                                     stage: "Stage 03",
-                                    title: "Function Runtime Testing",
+                                    title: "Azure Function App Deployed and Running",
                                     description:
-                                        "Started the Azure Functions runtime locally to verify that the blobBackupTrigger Function loaded successfully and was listening for Blob Storage events.",
+                                        "Verified the deployed Azure Function App in the Azure portal and confirmed that func-270907283-blob-backup was running in Australia East as part of the assessment resource group.",
                                     image:
-                                        "/evidence/task-1/02-function-automation/journey/03-function-runtime-testing.png",
-                                    alt: "Visual Studio Code showing the Azure Functions local runtime during Blob trigger testing",
+                                        "/evidence/task-1/02-function-automation/journey/03-function-app-running.png",
+                                    alt:
+                                        "Azure portal showing func-270907283-blob-backup Function App with Running status",
                                     caption:
-                                        "Local Azure Functions runtime used to verify that the blob-triggered automation was active and listening for storage events.",
-                                },
-                                {
-                                    figure: 8,
-                                    stage: "Stage 04",
-                                    title: "Automated Backup Successfully Executed",
-                                    description:
-                                        "Uploaded a test blob to the assessment-data source container and verified through the Function runtime logs that the storage event was detected and the automated backup process completed successfully.",
-                                    image:
-                                        "/evidence/task-1/02-function-automation/journey/04-automated-backup-success.png",
-                                    alt: "Azure Functions runtime showing successful automated Blob Storage backup execution",
-                                    caption:
-                                        "Azure Function runtime showing the detected Blob Storage event and successful execution of the automated backup process.",
-                                },
-                                {
-                                    figure: 9,
-                                    stage: "Stage 05",
-                                    title: "Backup Destination Verified",
-                                    description:
-                                        "Inspected the backup storage destination after execution and confirmed that the expected object had been written to the backup-data container.",
-                                    image:
-                                        "/evidence/task-1/02-function-automation/journey/05-backup-destination-verified.png",
-                                    alt: "Azure Storage showing the backed-up blob in the backup-data container",
-                                    caption:
-                                        "Azure Storage backup-data container confirming that the expected blob was successfully written to the backup destination.",
+                                        "Azure Function App func-270907283-blob-backup deployed in Australia East and confirmed with a Running status.",
                                 },
                             ]}
                         />
 
                         {/* =====================================================
-        PRIMARY EVIDENCE & INTERPRETATION
-    ====================================================== */}
+    PRIMARY EVIDENCE & INTERPRETATION
+====================================================== */}
 
-                        <div className="mt-14 space-y-14">
-                            <EvidenceCard
-                                figure={10}
-                                title="Automated Blob Backup Successfully Executed"
-                                image="/evidence/task-1/02-function-automation/primary/01-function-automation-verified.png"
-                                alt="Azure Functions runtime showing blobBackupTrigger successfully detecting and backing up backup-text-01.txt"
-                                caption="Primary evidence confirming that blobBackupTrigger detected backup-text-01.txt, processed the Blob 
-                                Storage event and completed the automated backup operation successfully."
-                                purpose="The purpose of this test was to verify the complete event-driven backup workflow. Rather than only 
-                                confirming that the Blob trigger could execute, the test was designed to demonstrate that a newly detected 
-                                source object could automatically initiate the backup process and be transferred to the designated backup storage destination."
-                                action="I ran the blobBackupTrigger Function locally using Azure Functions Core Tools and uploaded backup-text-01.txt to 
-                                the assessment-data source container. The Function detected the new 74-byte blob, processed the storage event and used the 
-                                configured backup storage connection to write the object to the backup-data destination."
-                                result="The Function runtime identified backup-text-01.txt, recorded the source blob size as 74 bytes, reported that
-                                 the object was being backed up to backup-data, confirmed that the backup completed successfully and finished the Function 
-                                 execution with a Succeeded status."
-                                significance="This provides the primary runtime evidence that the solution operated as an event-driven automated
-                                 backup workflow rather than as a manually initiated file copy. A Blob Storage event invoked application code 
-                                 automatically, the Function processed the incoming object and the workflow produced a separate backup copy 
-                                 in the designated destination. The earlier proof-of-process screenshots document how the Function was 
-                                 developed and tested, while this evidence demonstrates the successful end-to-end outcome."
-                            />
+                        <div className="mt-14">
+                            <div className="mb-8">
+                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-600">
+                                    Primary Verification Evidence
+                                </p>
+
+                                <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
+                                    Fresh End-to-End Automated Backup Verification
+                                </h3>
+
+                                <p className="mt-4 max-w-4xl leading-7 text-slate-600">
+                                    A fresh verification run was performed using{" "}
+                                    <strong>task1-automated-backup-test.txt</strong>. The same
+                                    383-byte object can be followed from the primary source
+                                    container, through the Azure Function runtime, and into the
+                                    separate backup destination. This provides a clear evidence
+                                    chain for the completed event-driven architecture.
+                                </p>
+                            </div>
+
+                            <div className="space-y-14">
+                                <EvidenceCard
+                                    figure={8}
+                                    title="Verification Object Uploaded to Primary Storage"
+                                    image="/evidence/task-1/02-function-automation/primary/01-source-blob-verification.png"
+                                    alt="Azure Blob Storage assessment-data container showing task1-automated-backup-test.txt with a size of 383 bytes"
+                                    caption="Fresh verification object task1-automated-backup-test.txt visible in the assessment-data source container with a size of 383 B."
+                                    purpose="The purpose of this step was to establish a clear source object for the final end-to-end verification of the automated backup workflow."
+                                    action="I uploaded task1-automated-backup-test.txt to the assessment-data container in the primary storage account while the blobBackupTrigger Function runtime was active."
+                                    result="Azure Blob Storage displayed task1-automated-backup-test.txt in assessment-data as an available block blob with a size of 383 B."
+                                    significance="This establishes the starting point of the verification chain. The object name and 383-byte size provide identifiable values that can be compared against the Function runtime output and the resulting object in the separate backup destination."
+                                />
+
+                                <EvidenceCard
+                                    figure={9}
+                                    title="Blob Trigger Automatically Executed the Backup"
+                                    image="/evidence/task-1/02-function-automation/primary/02-function-runtime-verification.png"
+                                    alt="Azure Functions runtime showing blobBackupTrigger detecting task1-automated-backup-test.txt and successfully backing up the 383-byte blob"
+                                    caption="Azure Functions runtime detecting task1-automated-backup-test.txt, reporting a source size of 383 bytes and completing the automated backup successfully."
+                                    purpose="The purpose of this test was to verify that creation of the new source blob automatically invoked the Blob-triggered Function and initiated the backup operation without requiring a manual copy."
+                                    action="With the local Azure Functions runtime running, I uploaded task1-automated-backup-test.txt to assessment-data. The blobBackupTrigger Function detected the storage event, read the incoming blob and initiated the configured backup operation to backup-data."
+                                    result="The runtime identified task1-automated-backup-test.txt, recorded the source blob size as 383 bytes, reported that the object was being backed up to backup-data, logged 'Backup completed successfully' and completed the blobBackupTrigger execution with a Succeeded status."
+                                    significance="This is the strongest runtime evidence that the solution operates as an event-driven automation workflow. Blob creation acted as the event source, Azure Functions executed the application logic automatically and the backup operation was completed without manually copying the object between containers."
+                                />
+
+                                <EvidenceCard
+                                    figure={10}
+                                    title="Automated Backup Destination Verified"
+                                    image="/evidence/task-1/02-function-automation/primary/03-backup-destination-verification.png"
+                                    alt="Azure Blob Storage backup-data container showing task1-automated-backup-test.txt with a size of 383 bytes after automated backup"
+                                    caption="Separate backup-data destination confirming task1-automated-backup-test.txt was written successfully with the same 383 B size as the source object."
+                                    purpose="The purpose of the final verification step was to confirm that the automated Function execution produced the expected object in the separate backup storage destination."
+                                    action="After the Function reported a successful backup, I inspected the backup-data container in the dedicated st270907283backup storage account and compared the resulting object with the original source blob."
+                                    result="The backup-data container contained task1-automated-backup-test.txt as an available block blob with a size of 383 B, matching the object shown in the primary assessment-data source container."
+                                    significance="This completes the end-to-end evidence chain. The matching object name and size across the source, Function runtime and destination demonstrate that the storage event was detected, processed automatically and resulted in a separate backup copy. Together, Figures 8–10 provide direct evidence of the complete Source → Trigger → Function → Backup workflow represented in Figure A3."
+                                />
+                            </div>
+
+                            {/* End-to-End Verification Summary */}
+                            <div className="mt-10 rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
+                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700">
+                                    End-to-End Verification Result
+                                </p>
+
+                                <div className="mt-4 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-center">
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                                            Source
+                                        </p>
+                                        <p className="mt-1 text-sm font-semibold text-slate-950">
+                                            assessment-data
+                                        </p>
+                                        <p className="mt-1 break-words text-xs text-slate-600">
+                                            task1-automated-backup-test.txt · 383 B
+                                        </p>
+                                    </div>
+
+                                    <div className="text-center font-bold text-violet-500">
+                                        →
+                                    </div>
+
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-wider text-violet-600">
+                                            Automation
+                                        </p>
+                                        <p className="mt-1 text-sm font-semibold text-slate-950">
+                                            blobBackupTrigger
+                                        </p>
+                                        <p className="mt-1 text-xs text-slate-600">
+                                            Execution Succeeded
+                                        </p>
+                                    </div>
+
+                                    <div className="text-center font-bold text-emerald-500">
+                                        →
+                                    </div>
+
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+                                            Destination
+                                        </p>
+                                        <p className="mt-1 text-sm font-semibold text-slate-950">
+                                            backup-data
+                                        </p>
+                                        <p className="mt-1 break-words text-xs text-slate-600">
+                                            task1-automated-backup-test.txt · 383 B ✓
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p className="mt-5 text-sm leading-6 text-slate-700">
+                                    The same verification object was observed at the source,
+                                    processed successfully by the Blob-triggered Function and
+                                    confirmed in the separate backup destination. This validates
+                                    the automated backup architecture implemented for Task 1.
+                                </p>
+                            </div>
                         </div>
 
                         {/* =====================================================
@@ -362,6 +1471,7 @@ export default function TaskOnePage() {
                             </p>
                         </div>
                     </div>
+
                     {/* =========================================================
     SECTION 03 — IDENTITY & ACCESS CONTROL
 ========================================================= */}
@@ -386,48 +1496,266 @@ export default function TaskOnePage() {
                             </p>
 
                             {/* =====================================================
+    FIGURE A4 — IDENTITY & ACCESS CONTROL ARCHITECTURE
+====================================================== */}
+
+                            <div className="mt-10 rounded-3xl border border-indigo-200 bg-white p-7 shadow-sm">
+                                <div className="mb-7">
+                                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-indigo-600">
+                                        Section Architecture
+                                    </p>
+
+                                    <h3 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
+                                        Identity & Least-Privilege Access Control
+                                    </h3>
+
+                                    <p className="mt-3 max-w-4xl leading-7 text-slate-600">
+                                        This diagram shows how Microsoft Entra ID authentication and
+                                        Azure role-based access control were combined to provide a
+                                        dedicated test identity with read-only access to Azure Blob
+                                        Storage. The resulting permissions allowed the identity to
+                                        read blob data while preventing destructive operations such
+                                        as deletion.
+                                    </p>
+                                </div>
+
+                                {/* Architecture */}
+                                <div className="overflow-hidden rounded-2xl border border-indigo-200 bg-slate-50">
+                                    {/* Header */}
+                                    <div className="border-b border-indigo-200 bg-indigo-50 px-6 py-5">
+                                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-700">
+                                            Azure Identity & Access Control
+                                        </p>
+
+                                        <h4 className="mt-1 text-xl font-bold text-slate-950">
+                                            Least-Privilege Blob Storage Access
+                                        </h4>
+
+                                        <p className="mt-2 text-sm text-slate-600">
+                                            Identity → Authentication → RBAC Role → Storage Access →
+                                            Permission Enforcement
+                                        </p>
+                                    </div>
+
+                                    <div className="p-6">
+                                        {/* Main flow */}
+                                        <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+                                            {/* Identity */}
+                                            <div className="rounded-2xl border border-indigo-200 bg-white p-5">
+                                                <p className="text-xs font-bold uppercase tracking-wider text-indigo-600">
+                                                    01 · Identity
+                                                </p>
+
+                                                <h5 className="mt-2 font-bold text-slate-950">
+                                                    Microsoft Entra ID
+                                                </h5>
+
+                                                <p className="mt-2 text-sm leading-6 text-slate-600">
+                                                    A dedicated test identity was used to authenticate
+                                                    independently from the privileged administrator
+                                                    account.
+                                                </p>
+
+                                                <div className="mt-4 rounded-xl bg-indigo-50 px-4 py-3">
+                                                    <p className="text-xs font-semibold text-indigo-700">
+                                                        Authenticated identity
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex items-center justify-center text-2xl font-bold text-indigo-400">
+                                                →
+                                            </div>
+
+                                            {/* RBAC */}
+                                            <div className="rounded-2xl border border-violet-200 bg-white p-5">
+                                                <p className="text-xs font-bold uppercase tracking-wider text-violet-600">
+                                                    02 · Authorisation
+                                                </p>
+
+                                                <h5 className="mt-2 font-bold text-slate-950">
+                                                    Azure RBAC
+                                                </h5>
+
+                                                <p className="mt-2 text-sm leading-6 text-slate-600">
+                                                    Access was restricted by assigning the built-in
+                                                    Storage Blob Data Reader role according to the
+                                                    principle of least privilege.
+                                                </p>
+
+                                                <div className="mt-4 rounded-xl bg-violet-50 px-4 py-3">
+                                                    <p className="text-xs font-semibold text-violet-700">
+                                                        Storage Blob Data Reader
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex items-center justify-center text-2xl font-bold text-blue-400">
+                                                →
+                                            </div>
+
+                                            {/* Resource */}
+                                            <div className="rounded-2xl border border-blue-200 bg-white p-5">
+                                                <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                                                    03 · Protected Resource
+                                                </p>
+
+                                                <h5 className="mt-2 break-words font-bold text-slate-950">
+                                                    st270907283assessment
+                                                </h5>
+
+                                                <p className="mt-2 text-sm leading-6 text-slate-600">
+                                                    The assigned role governed the identity&apos;s data
+                                                    access to Blob Storage within the assessment
+                                                    storage environment.
+                                                </p>
+
+                                                <div className="mt-4 rounded-xl bg-blue-50 px-4 py-3">
+                                                    <p className="text-xs font-semibold text-blue-700">
+                                                        assessment-data
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Permission boundary */}
+                                        <div className="mt-6 grid gap-4 md:grid-cols-2">
+                                            {/* Allowed */}
+                                            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                                                <div className="flex items-start justify-between gap-4">
+                                                    <div>
+                                                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+                                                            Permission Test · Allowed
+                                                        </p>
+
+                                                        <h5 className="mt-2 text-lg font-bold text-slate-950">
+                                                            Read Blob Data
+                                                        </h5>
+                                                    </div>
+
+                                                    <div className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-bold text-emerald-700">
+                                                        ✓ ALLOWED
+                                                    </div>
+                                                </div>
+
+                                                <p className="mt-3 text-sm leading-6 text-slate-700">
+                                                    The test identity could authenticate and read Blob
+                                                    Storage data because the assigned role includes
+                                                    blob read permissions.
+                                                </p>
+                                            </div>
+
+                                            {/* Denied */}
+                                            <div className="rounded-2xl border border-red-200 bg-red-50 p-5">
+                                                <div className="flex items-start justify-between gap-4">
+                                                    <div>
+                                                        <p className="text-xs font-bold uppercase tracking-wider text-red-700">
+                                                            Permission Test · Denied
+                                                        </p>
+
+                                                        <h5 className="mt-2 text-lg font-bold text-slate-950">
+                                                            Delete Blob Data
+                                                        </h5>
+                                                    </div>
+
+                                                    <div className="rounded-full bg-red-100 px-3 py-1 text-sm font-bold text-red-700">
+                                                        ✕ DENIED
+                                                    </div>
+                                                </div>
+
+                                                <p className="mt-3 text-sm leading-6 text-slate-700">
+                                                    A delete attempt was rejected because Storage Blob
+                                                    Data Reader does not provide the permissions
+                                                    required to remove Blob Storage objects.
+                                                </p>
+
+                                                <div className="mt-3 rounded-xl border border-red-200 bg-white px-4 py-3">
+                                                    <p className="break-words font-mono text-xs font-semibold text-red-700">
+                                                        403 · AuthorizationPermissionMismatch
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Security model */}
+                                        <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5">
+                                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                                                Security Relationship
+                                            </p>
+
+                                            <p className="mt-3 text-sm leading-7 text-slate-700">
+                                                Microsoft Entra ID establishes{" "}
+                                                <strong>who the user is</strong>, while Azure RBAC
+                                                determines <strong>what that identity can do</strong>.
+                                                Assigning Storage Blob Data Reader provided only the
+                                                permissions required for the test workload. Successful
+                                                read access combined with a denied delete operation
+                                                demonstrates that the least-privilege boundary was
+                                                actively enforced.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Caption */}
+                                <div className="mt-4 border-l-4 border-indigo-500 pl-4">
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-600">
+                                        Figure A4 · Identity & Access Control Architecture
+                                    </p>
+
+                                    <p className="mt-1 text-sm leading-6 text-slate-600">
+                                        Least-privilege access-control architecture implemented for
+                                        Azure Blob Storage. Microsoft Entra ID authenticates the
+                                        dedicated test identity, Azure RBAC assigns the Storage Blob
+                                        Data Reader role, and the resulting permission boundary allows
+                                        blob read operations while denying unauthorised deletion.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* =====================================================
             PROOF OF PROCESS
         ====================================================== */}
 
                             <ImplementationJourney
                                 title="Implementing Least-Privilege Blob Access"
-                                description="These stages document the progression from creating a dedicated Microsoft Entra test identity to assigning a restricted Azure RBAC role and verifying the resulting access configuration."
+                                description="These stages document the progression from creating a dedicated Microsoft Entra test identity, through configuring Azure role-based access control, to confirming that the Storage Blob Data Reader role was assigned at the storage-account scope. The primary evidence below then tests whether that permission boundary was actively enforced."
                                 items={[
                                     {
                                         figure: 11,
                                         stage: "Stage 01",
                                         title: "Dedicated Microsoft Entra Identity Created",
                                         description:
-                                            "Created the Azure Assessment Blob Reader identity to provide a separate account for testing restricted access to Azure Blob Storage.",
+                                            "Created the Azure Assessment Blob Reader identity to provide a separate account for testing restricted access independently from the privileged administrator account.",
                                         image:
                                             "/evidence/task-1/03-access-control/journey/01-entra-blob-reader-user.png",
-                                        alt: "Microsoft Entra ID showing the Azure Assessment Blob Reader test identity",
+                                        alt: "Microsoft Entra ID showing the dedicated Azure Assessment Blob Reader test identity",
                                         caption:
-                                            "Dedicated Microsoft Entra identity created to test least-privilege access to Azure Blob Storage.",
+                                            "Dedicated Microsoft Entra identity created for least-privilege Azure Blob Storage access testing.",
                                     },
                                     {
                                         figure: 12,
                                         stage: "Stage 02",
                                         title: "Azure RBAC Role Configuration",
                                         description:
-                                            "Opened Access Control (IAM) on the storage account and used the role assignment workflow to configure an appropriate data-plane permission for the test identity.",
+                                            "Opened Access Control (IAM) on the assessment storage account and used the Azure role assignment workflow to configure a built-in data-plane role appropriate for read-only Blob Storage access.",
                                         image:
                                             "/evidence/task-1/03-access-control/journey/02-rbac-add-role-assignment.png",
-                                        alt: "Azure Portal showing the Add role assignment workflow in Access Control IAM",
+                                        alt: "Azure portal showing the Add role assignment workflow in Access Control IAM",
                                         caption:
-                                            "Azure RBAC role assignment workflow used to configure controlled Blob Storage access.",
+                                            "Azure RBAC role assignment workflow used to configure controlled access to Blob Storage.",
                                     },
                                     {
                                         figure: 13,
                                         stage: "Stage 03",
                                         title: "Storage Blob Data Reader Assigned",
                                         description:
-                                            "Assigned the built-in Storage Blob Data Reader role to the test identity, providing read access to blob data without granting modification or deletion permissions.",
+                                            "Assigned the built-in Storage Blob Data Reader role to the Azure Assessment Blob Reader identity at the assessment storage account, providing blob data read access without granting unnecessary write or delete permissions.",
                                         image:
                                             "/evidence/task-1/03-access-control/journey/03-storage-blob-data-reader-role-assigned.png",
-                                        alt: "Azure Access Control IAM showing Storage Blob Data Reader assigned to the test identity",
+                                        alt: "Azure Access Control IAM showing Storage Blob Data Reader assigned to the Azure Assessment Blob Reader identity",
                                         caption:
-                                            "Storage Blob Data Reader role successfully assigned to the Azure Assessment Blob Reader identity.",
+                                            "Storage Blob Data Reader role assigned to the dedicated test identity for the assessment storage account.",
                                     },
                                 ]}
                             />
@@ -441,12 +1769,12 @@ export default function TaskOnePage() {
                                     figure={14}
                                     title="Least-Privilege Blob Access Successfully Enforced"
                                     image="/evidence/task-1/03-access-control/primary/04-rbac-delete-denied-403.png"
-                                    alt="Microsoft Azure Storage Explorer showing a failed blob deletion with HTTP 403 AuthorizationPermissionMismatch"
-                                    caption="Primary evidence confirming that Azure RBAC prevented the restricted Blob Reader identity from deleting azure-assessment-test.txt and returned HTTP 403 AuthorizationPermissionMismatch."
-                                    purpose="The purpose of this validation was to prove that the Storage Blob Data Reader role was actively enforcing least-privilege access rather than relying only on the role assignment displayed in the Azure portal."
-                                    action="I connected to the assessment-data container using the restricted Blob Reader identity and attempted to delete azure-assessment-test.txt. The identity could access the stored blob, but the delete operation required permissions that were not included in the assigned reader role."
-                                    result="Azure rejected the delete request with HTTP 403 and returned the AuthorizationPermissionMismatch error. The blob remained stored in the assessment-data container, confirming that the restricted identity could not perform the unauthorised destructive operation."
-                                    significance="This provides direct practical evidence that Azure RBAC enforced the principle of least privilege. Microsoft Entra ID established the identity, while Azure RBAC controlled what that identity was authorised to do with the storage resource. The successful denial demonstrates that read access can be provided without exposing stored data to unnecessary modification or deletion permissions."
+                                    alt="Microsoft Azure Storage Explorer showing blob access and a failed deletion returning HTTP 403 AuthorizationPermissionMismatch"
+                                    caption="Primary evidence confirming that the restricted Blob Reader identity could access the assessment-data container while an attempted deletion of azure-assessment-test.txt was denied with HTTP 403 AuthorizationPermissionMismatch."
+                                    purpose="The purpose of this validation was to verify that the dedicated Microsoft Entra test identity could access Azure Blob Storage using the assigned Storage Blob Data Reader role while remaining unable to perform destructive operations. This tested whether the configured Azure RBAC permission boundary was actively enforced."
+                                    action="I authenticated to the storage resource using the dedicated Azure Assessment Blob Reader identity and accessed the assessment-data container. I then attempted to delete azure-assessment-test.txt. The identity could access the blob data, but the delete operation required permissions that were not provided by the assigned Storage Blob Data Reader role."
+                                    result="Azure Storage Explorer displayed the blob within the assessment-data container, demonstrating that the authenticated identity could access the required data. When deletion was attempted, Azure rejected the request with HTTP 403 and returned AuthorizationPermissionMismatch. The blob remained stored in the container."
+                                    significance="This provides direct practical evidence that Azure RBAC enforced the principle of least privilege. Microsoft Entra ID established who the user was, while Azure RBAC determined what that authenticated identity was authorised to do. The combination of successful blob access and denied deletion demonstrates that the identity received the access required for its task without being granted unnecessary destructive permissions."
                                 />
                             </div>
 
@@ -490,6 +1818,7 @@ export default function TaskOnePage() {
                             </div>
                         </div>
                     </section>
+
                     {/* =========================================================
     SECTION 04 — AZURE FILES
 ========================================================= */}
@@ -512,6 +1841,246 @@ export default function TaskOnePage() {
                             configuration was then reviewed to demonstrate how the share could
                             be mounted and accessed from a client operating system.
                         </p>
+
+                        {/* =====================================================
+    SECTION ARCHITECTURE — AZURE FILES
+====================================================== */}
+
+                        <div className="mt-12 rounded-3xl border border-cyan-200 bg-white p-5 shadow-sm md:p-8">
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-600">
+                                Section Architecture
+                            </p>
+
+                            <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
+                                Azure Files — Managed File Sharing Architecture
+                            </h3>
+
+                            <p className="mt-4 max-w-4xl leading-7 text-slate-600">
+                                This diagram shows how Azure Files provides managed cloud-based file
+                                storage through a dedicated file share. The assessment-files share was
+                                created inside the assessment storage account, used to store a test
+                                file and reviewed through the client connection configuration to
+                                demonstrate how the cloud resource can be accessed as a network file
+                                share using SMB.
+                            </p>
+
+                            {/* Architecture diagram */}
+                            <div className="mt-8 overflow-hidden rounded-2xl border border-cyan-200 bg-slate-50">
+                                {/* Header */}
+                                <div className="border-b border-cyan-200 bg-cyan-50 px-5 py-5 md:px-6">
+                                    <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-cyan-700">
+                                        Azure Managed File Storage
+                                    </p>
+
+                                    <h4 className="mt-2 text-xl font-bold text-slate-950">
+                                        Cloud File Share & Client Access
+                                    </h4>
+
+                                    <p className="mt-2 text-sm text-slate-600">
+                                        Storage Account → Azure Files → File Share → Stored File → SMB
+                                        Client Access
+                                    </p>
+                                </div>
+
+                                <div className="p-5 md:p-6">
+                                    {/* Main architecture flow */}
+                                    <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+                                        {/* Storage account */}
+                                        <div className="rounded-2xl border border-blue-200 bg-white p-5">
+                                            <p className="text-xs font-extrabold uppercase tracking-wide text-blue-600">
+                                                01 · Storage Platform
+                                            </p>
+
+                                            <h5 className="mt-3 font-bold text-slate-950">
+                                                st270907283assessment
+                                            </h5>
+
+                                            <p className="mt-3 text-sm leading-6 text-slate-600">
+                                                The Azure Storage account provides the cloud platform
+                                                containing the managed Azure Files service.
+                                            </p>
+
+                                            <div className="mt-4 rounded-xl bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700">
+                                                Azure Storage Account
+                                            </div>
+                                        </div>
+
+                                        {/* Arrow */}
+                                        <div className="hidden items-center justify-center px-1 text-2xl font-bold text-cyan-500 lg:flex">
+                                            →
+                                        </div>
+
+                                        {/* File share */}
+                                        <div className="rounded-2xl border border-cyan-300 bg-cyan-50 p-5">
+                                            <p className="text-xs font-extrabold uppercase tracking-wide text-cyan-700">
+                                                02 · Managed File Share
+                                            </p>
+
+                                            <h5 className="mt-3 font-bold text-slate-950">
+                                                assessment-files
+                                            </h5>
+
+                                            <p className="mt-3 text-sm leading-6 text-slate-600">
+                                                Azure Files provides the managed file-sharing layer,
+                                                allowing file-based data to be stored in a dedicated
+                                                cloud file share.
+                                            </p>
+
+                                            <div className="mt-4 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-cyan-700">
+                                                Azure Files · SMB
+                                            </div>
+                                        </div>
+
+                                        {/* Arrow */}
+                                        <div className="hidden items-center justify-center px-1 text-2xl font-bold text-cyan-500 lg:flex">
+                                            →
+                                        </div>
+
+                                        {/* Stored file */}
+                                        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                                            <p className="text-xs font-extrabold uppercase tracking-wide text-emerald-700">
+                                                03 · Stored Data
+                                            </p>
+
+                                            <h5 className="mt-3 font-bold text-slate-950">
+                                                azure-files-test.txt
+                                            </h5>
+
+                                            <p className="mt-3 text-sm leading-6 text-slate-600">
+                                                A test file was uploaded successfully to verify that the
+                                                managed share could store file-based assessment data.
+                                            </p>
+
+                                            <div className="mt-4 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-emerald-700">
+                                                ✓ File Stored Successfully
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* SMB connection layer */}
+                                    <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5 md:p-6">
+                                        <div className="grid gap-5 md:grid-cols-[1fr_auto_1fr] md:items-center">
+                                            <div>
+                                                <p className="text-xs font-extrabold uppercase tracking-wide text-amber-700">
+                                                    Client Connection
+                                                </p>
+
+                                                <h5 className="mt-2 font-bold text-slate-950">
+                                                    SMB Network Access
+                                                </h5>
+
+                                                <p className="mt-2 text-sm leading-6 text-slate-600">
+                                                    Azure provides the configuration required for a
+                                                    supported client to mount the assessment-files
+                                                    share as a network-accessible file system.
+                                                </p>
+                                            </div>
+
+                                            <div className="hidden text-2xl font-bold text-amber-500 md:block">
+                                                →
+                                            </div>
+
+                                            <div className="rounded-xl border border-amber-200 bg-white p-4">
+                                                <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
+                                                    Supported Client
+                                                </p>
+
+                                                <p className="mt-2 font-bold text-slate-950">
+                                                    Windows · Linux · macOS
+                                                </p>
+
+                                                <div className="mt-3 flex flex-wrap gap-2">
+                                                    <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
+                                                        SMB
+                                                    </span>
+
+                                                    <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
+                                                        TCP 445
+                                                    </span>
+
+                                                    <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
+                                                        Network Mount
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Configuration summary */}
+                                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                                                Storage Type
+                                            </p>
+                                            <p className="mt-2 text-sm font-bold text-slate-900">
+                                                Managed File Share
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                                                Protocol
+                                            </p>
+                                            <p className="mt-2 text-sm font-bold text-slate-900">
+                                                SMB
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                                                Network
+                                            </p>
+                                            <p className="mt-2 text-sm font-bold text-slate-900">
+                                                TCP Port 445
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                                                Data Protection
+                                            </p>
+                                            <p className="mt-2 text-sm font-bold text-slate-900">
+                                                Soft Delete · 7 Days
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Architecture relationship */}
+                                    <div className="mt-5 rounded-xl border border-slate-200 bg-white p-5">
+                                        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-slate-500">
+                                            Architecture Relationship
+                                        </p>
+
+                                        <p className="mt-3 text-sm leading-7 text-slate-700">
+                                            The Azure Storage account provides the underlying storage
+                                            platform, while Azure Files exposes the
+                                            <strong> assessment-files</strong> share as managed file
+                                            storage. Files such as
+                                            <strong> azure-files-test.txt</strong> are stored inside the
+                                            share and can be presented to supported client operating
+                                            systems through SMB. This differs from Blob Storage because
+                                            the workload is accessed through familiar file-sharing
+                                            behaviour rather than object-based container access.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Figure caption */}
+                            <div className="mt-4 border-l-4 border-cyan-500 pl-4">
+                                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-cyan-700">
+                                    Figure A5 · Azure Files Managed File Sharing Architecture
+                                </p>
+
+                                <p className="mt-2 text-sm leading-6 text-slate-600">
+                                    Logical architecture of the Azure Files implementation used for
+                                    Task 1. The assessment storage account hosts the
+                                    assessment-files managed file share, which stores the verified
+                                    azure-files-test.txt object and provides SMB-based client
+                                    connectivity for supported operating systems.
+                                </p>
+                            </div>
+                        </div>
 
                         {/* =====================================================
         PROOF OF PROCESS
@@ -548,14 +2117,14 @@ export default function TaskOnePage() {
                                 {
                                     figure: 17,
                                     stage: "Stage 03",
-                                    title: "Test File Stored",
+                                    title: "Azure File Share Successfully Created",
                                     description:
-                                        "Uploaded a test file to assessment-files to verify that the Azure file share could successfully store file-based data.",
+                                        "Confirmed that the assessment-files share was successfully provisioned within the assessment storage account and available for managed file storage.",
                                     image:
                                         "/evidence/task-1/04-azure-file-share/journey/03-file-share-created.png",
-                                    alt: "Azure Portal showing the assessment-files file share and stored test file",
+                                    alt: "Azure Portal showing the successfully created assessment-files Azure file share",
                                     caption:
-                                        "Azure file share successfully created and used to store assessment test data.",
+                                        "The assessment-files Azure file share successfully provisioned and ready to store assessment data.",
                                 },
                                 {
                                     figure: 18,
@@ -667,6 +2236,275 @@ export default function TaskOnePage() {
                         workload and transition qualifying data from the Hot access tier to
                         the lower-cost Cool tier.
                     </p>
+                    {/* =====================================================
+    FIGURE A6 — LIFECYCLE MANAGEMENT ARCHITECTURE
+===================================================== */}
+
+                    <div className="mt-12 rounded-2xl border border-amber-200 bg-white p-6 shadow-sm sm:p-8">
+                        {/* Section heading */}
+                        <div>
+                            <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-amber-600">
+                                Section Architecture
+                            </p>
+
+                            <h3 className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
+                                Automated Blob Lifecycle Management
+                            </h3>
+
+                            <p className="mt-3 max-w-4xl leading-7 text-slate-600">
+                                This diagram visualises how the lifecycle management policy evaluates
+                                ageing blob data within the assessment workload and automatically
+                                transitions qualifying objects from the Hot access tier to the
+                                lower-cost Cool tier without deleting the stored data.
+                            </p>
+                        </div>
+
+                        {/* Architecture diagram */}
+                        <div className="mt-8 overflow-hidden rounded-2xl border border-amber-200 bg-slate-50">
+                            {/* Diagram header */}
+                            <div className="border-b border-amber-200 bg-amber-50 px-6 py-5">
+                                <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-700">
+                                    Azure Storage Lifecycle Management
+                                </p>
+
+                                <h4 className="mt-1 text-xl font-bold text-slate-900">
+                                    Hot → Policy Evaluation → Cool
+                                </h4>
+
+                                <p className="mt-2 text-sm text-slate-600">
+                                    Blob Storage → Lifecycle Rule → Age Condition → Tier Transition
+                                </p>
+                            </div>
+
+                            <div className="p-5 sm:p-6">
+                                {/* Main flow */}
+                                <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-stretch">
+
+                                    {/* 01 SOURCE */}
+                                    <div className="rounded-xl border border-blue-200 bg-blue-50 p-5">
+                                        <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-blue-600">
+                                            01 · Source Data
+                                        </p>
+
+                                        <h5 className="mt-2 text-lg font-bold text-slate-900">
+                                            Hot Access Tier
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            Recently modified assessment blobs remain in the Hot tier
+                                            where they are suitable for frequently accessed data.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-blue-100 px-3 py-2 text-xs font-bold text-blue-700">
+                                            assessment-data/
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="flex items-center justify-center text-2xl font-bold text-amber-500">
+                                        <span className="hidden lg:inline">→</span>
+                                        <span className="lg:hidden">↓</span>
+                                    </div>
+
+                                    {/* 02 POLICY */}
+                                    <div className="rounded-xl border border-purple-200 bg-purple-50 p-5">
+                                        <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-purple-600">
+                                            02 · Automation Policy
+                                        </p>
+
+                                        <h5 className="mt-2 text-lg font-bold text-slate-900">
+                                            Lifecycle Rule
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            Azure automatically evaluates eligible blobs using the
+                                            configured lifecycle management rule.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-purple-100 px-3 py-2 text-xs font-bold text-purple-700">
+                                            move-old-blobs-to-cool
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="flex items-center justify-center text-2xl font-bold text-amber-500">
+                                        <span className="hidden lg:inline">→</span>
+                                        <span className="lg:hidden">↓</span>
+                                    </div>
+
+                                    {/* 03 CONDITION */}
+                                    <div className="rounded-xl border border-amber-200 bg-amber-50 p-5">
+                                        <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-700">
+                                            03 · Evaluation
+                                        </p>
+
+                                        <h5 className="mt-2 text-lg font-bold text-slate-900">
+                                            Age Condition
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            The policy checks whether an eligible base block blob has
+                                            remained unmodified for more than 30 days.
+                                        </p>
+
+                                        <div className="mt-4 space-y-2">
+                                            <div className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                                ✓ Base block blob
+                                            </div>
+
+                                            <div className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                                ✓ Last modified &gt; 30 days
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="flex items-center justify-center text-center">
+                                        <div>
+                                            <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-600">
+                                                Qualifies
+                                            </span>
+
+                                            <span className="hidden text-2xl font-bold text-emerald-500 lg:inline">
+                                                →
+                                            </span>
+
+                                            <span className="text-2xl font-bold text-emerald-500 lg:hidden">
+                                                ↓
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* 04 DESTINATION */}
+                                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+                                        <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
+                                            04 · Tier Transition
+                                        </p>
+
+                                        <h5 className="mt-2 text-lg font-bold text-slate-900">
+                                            Cool Access Tier
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            Qualifying ageing blobs are automatically transitioned to
+                                            the Cool tier for less frequently accessed data.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-emerald-100 px-3 py-2 text-xs font-bold text-emerald-700">
+                                            Object retained · Not deleted
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Policy configuration summary */}
+                                <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                                    <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                        <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-slate-500">
+                                            Scope
+                                        </p>
+                                        <p className="mt-2 text-sm font-bold text-slate-900">
+                                            assessment-data/
+                                        </p>
+                                    </div>
+
+                                    <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                        <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-slate-500">
+                                            Blob Type
+                                        </p>
+                                        <p className="mt-2 text-sm font-bold text-slate-900">
+                                            Base block blobs
+                                        </p>
+                                    </div>
+
+                                    <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                        <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-slate-500">
+                                            Condition
+                                        </p>
+                                        <p className="mt-2 text-sm font-bold text-slate-900">
+                                            Last modified &gt; 30 days
+                                        </p>
+                                    </div>
+
+                                    <div className="rounded-xl border border-slate-200 bg-white p-4">
+                                        <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-slate-500">
+                                            Action
+                                        </p>
+                                        <p className="mt-2 text-sm font-bold text-slate-900">
+                                            Hot → Cool
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Important behaviour */}
+                                <div className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+                                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700">
+                                                Lifecycle Outcome
+                                            </p>
+
+                                            <h5 className="mt-1 font-bold text-slate-900">
+                                                Storage tier changes — the blob remains available
+                                            </h5>
+                                        </div>
+
+                                        <div className="rounded-full border border-emerald-200 bg-white px-4 py-2 text-xs font-extrabold text-emerald-700">
+                                            NO DELETION
+                                        </div>
+                                    </div>
+
+                                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                                        The lifecycle action changes the storage tier of qualifying
+                                        objects rather than deleting them. This allows ageing data to
+                                        remain available while using a tier intended for less
+                                        frequently accessed information.
+                                    </p>
+                                </div>
+
+                                {/* Architecture relationship */}
+                                <div className="mt-5 rounded-xl border border-slate-200 bg-white p-5">
+                                    <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-slate-500">
+                                        Architecture Relationship
+                                    </p>
+
+                                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                                        The lifecycle policy acts as an automated cost-optimisation
+                                        layer over Blob Storage. Objects within{" "}
+                                        <span className="font-semibold text-slate-800">
+                                            assessment-data/
+                                        </span>{" "}
+                                        are evaluated against the configured age condition. Eligible
+                                        base block blobs that have remained unmodified for more than
+                                        30 days can transition from the Hot tier to the Cool tier
+                                        without requiring manual intervention.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Figure caption */}
+                        <div className="mt-4 border-l-4 border-amber-500 pl-4">
+                            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-amber-700">
+                                Figure A6 · Lifecycle Management Architecture
+                            </p>
+
+                            <p className="mt-2 text-sm leading-6 text-slate-600">
+                                Policy-driven Azure Blob Storage lifecycle architecture implemented
+                                for Task 1. The{" "}
+                                <span className="font-semibold text-slate-800">
+                                    move-old-blobs-to-cool
+                                </span>{" "}
+                                rule targets eligible base block blobs within{" "}
+                                <span className="font-semibold text-slate-800">
+                                    assessment-data/
+                                </span>{" "}
+                                and evaluates whether they have remained unmodified for more than 30
+                                days. Qualifying objects can then transition from the Hot access tier
+                                to the Cool tier while remaining stored and available.
+                            </p>
+                        </div>
+                    </div>
+
 
                     {/* Implementation Journey */}
 
@@ -885,6 +2723,321 @@ export default function TaskOnePage() {
                             </p>
                         </div>
                     </div>
+                    {/* =====================================================
+    FIGURE A7 — BLOB DATA PROTECTION & RECOVERY ARCHITECTURE
+===================================================== */}
+
+                    <div className="mt-12 rounded-2xl border border-rose-300 bg-white p-6 shadow-sm">
+                        {/* Section heading */}
+                        <div className="mb-6">
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-rose-600">
+                                Section Architecture
+                            </p>
+
+                            <h3 className="mt-2 text-xl font-bold text-slate-950">
+                                Blob Data Protection & Recovery Architecture
+                            </h3>
+
+                            <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-600">
+                                This diagram visualises the recovery workflow tested with{" "}
+                                <span className="font-semibold text-slate-900">
+                                    soft-delete-test.txt
+                                </span>
+                                , showing how Azure soft delete and blob versioning retained
+                                recoverable data after deletion and allowed the required blob version
+                                to be restored to an active current state.
+                            </p>
+                        </div>
+
+                        {/* Architecture diagram */}
+                        <div className="overflow-hidden rounded-2xl border border-rose-200 bg-slate-50">
+                            {/* Diagram header */}
+                            <div className="border-b border-rose-200 bg-rose-50 px-5 py-4">
+                                <p className="text-xs font-bold uppercase tracking-[0.18em] text-rose-700">
+                                    Azure Blob Data Protection
+                                </p>
+
+                                <h4 className="mt-1 text-lg font-bold text-slate-950">
+                                    Active Blob → Delete → Protect → Recover → Restore
+                                </h4>
+
+                                <p className="mt-1 text-sm text-slate-600">
+                                    Blob Storage → Soft Delete → Version History → Recovery → Current
+                                    Version
+                                </p>
+                            </div>
+
+                            {/* Main recovery flow */}
+                            <div className="p-5">
+                                <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center">
+                                    {/* 01 Active blob */}
+                                    <div className="h-full rounded-xl border border-blue-200 bg-blue-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">
+                                            01 · Active Data
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            Current Blob
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            The test object existed normally inside the{" "}
+                                            <span className="font-semibold text-slate-900">
+                                                assessment-data
+                                            </span>{" "}
+                                            container before the recovery test began.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-blue-100 px-3 py-2 text-xs font-semibold text-blue-800">
+                                            soft-delete-test.txt
+                                        </div>
+
+                                        <div className="mt-2 rounded-lg bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                            485 B · Block blob
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden text-center lg:block">
+                                        <p className="text-[9px] font-bold uppercase tracking-wider text-rose-600">
+                                            Delete
+                                        </p>
+                                        <p className="mt-1 text-xl text-rose-500">→</p>
+                                    </div>
+
+                                    {/* 02 Delete */}
+                                    <div className="h-full rounded-xl border border-rose-200 bg-rose-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-rose-700">
+                                            02 · Risk Event
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            Blob Deleted
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            The blob was deliberately deleted to simulate an
+                                            accidental data-loss event and test the configured Azure
+                                            protection controls.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-rose-100 px-3 py-2 text-xs font-semibold text-rose-800">
+                                            Deletion initiated
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden text-center lg:block">
+                                        <p className="text-[9px] font-bold uppercase tracking-wider text-amber-600">
+                                            Protected
+                                        </p>
+                                        <p className="mt-1 text-xl text-amber-500">→</p>
+                                    </div>
+
+                                    {/* 03 Protection */}
+                                    <div className="h-full rounded-xl border border-amber-200 bg-amber-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-amber-700">
+                                            03 · Protection
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            Soft Delete
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            Azure retained recoverable blob data instead of allowing
+                                            the deletion to immediately become permanent data loss.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-amber-100 px-3 py-2 text-xs font-semibold text-amber-800">
+                                            7-day retention policy
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden text-center lg:block">
+                                        <p className="text-[9px] font-bold uppercase tracking-wider text-purple-600">
+                                            Retained
+                                        </p>
+                                        <p className="mt-1 text-xl text-purple-500">→</p>
+                                    </div>
+
+                                    {/* 04 Versioning / recovery */}
+                                    <div className="h-full rounded-xl border border-purple-200 bg-purple-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-purple-700">
+                                            04 · Recovery
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            Previous Version
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            Blob versioning preserved historical state, allowing the
+                                            protected object to remain available as a recoverable
+                                            previous version.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-purple-100 px-3 py-2 text-xs font-semibold text-purple-800">
+                                            Undelete protected data
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden text-center lg:block">
+                                        <p className="text-[9px] font-bold uppercase tracking-wider text-emerald-600">
+                                            Restore
+                                        </p>
+                                        <p className="mt-1 text-xl text-emerald-500">→</p>
+                                    </div>
+
+                                    {/* 05 Restored */}
+                                    <div className="h-full rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">
+                                            05 · Restored State
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            Current Version
+                                        </h5>
+
+                                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                                            The required recovered version was made current,
+                                            returning the protected blob to an active usable state.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-emerald-100 px-3 py-2 text-xs font-semibold text-emerald-800">
+                                            ✓ soft-delete-test.txt
+                                        </div>
+
+                                        <div className="mt-2 rounded-lg bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                            485 B · Current version
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Protection mechanisms */}
+                                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                                    <div className="rounded-xl border border-amber-200 bg-white p-4">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700">
+                                            Soft Delete
+                                        </p>
+
+                                        <p className="mt-2 font-bold text-slate-900">
+                                            Provides a recovery window after deletion
+                                        </p>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Deleted blob data is retained for the configured recovery
+                                            period, reducing the risk that an accidental deletion
+                                            immediately becomes permanent.
+                                        </p>
+                                    </div>
+
+                                    <div className="rounded-xl border border-purple-200 bg-white p-4">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-purple-700">
+                                            Blob Versioning
+                                        </p>
+
+                                        <p className="mt-2 font-bold text-slate-900">
+                                            Preserves historical states of the blob
+                                        </p>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Previous versions remain available so that an earlier
+                                            state can be recovered and, when required, restored as
+                                            the current version.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Key recovery outcome */}
+                                <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">
+                                                Recovery Outcome
+                                            </p>
+
+                                            <p className="mt-1 font-bold text-slate-950">
+                                                Deletion did not become permanent data loss
+                                            </p>
+
+                                            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+                                                Azure retained recoverable blob data after deletion.
+                                                The protected object was recovered and the required
+                                                version was then restored as the current version,
+                                                returning the blob to an active state.
+                                            </p>
+                                        </div>
+
+                                        <span className="shrink-0 rounded-full border border-emerald-300 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+                                            Recovery Verified
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Important distinction */}
+                                <div className="mt-4 rounded-xl border border-violet-200 bg-violet-50 p-4">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-violet-700">
+                                        Important Recovery Distinction
+                                    </p>
+
+                                    <p className="mt-2 font-bold text-slate-950">
+                                        Undelete and Make Current Version are not necessarily the same
+                                        operation
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                                        During this practical test, Azure successfully undeleted the
+                                        protected snapshots and previous versions, but the recovered
+                                        blob could still appear as a previous version. I therefore
+                                        verified the version state and explicitly restored the
+                                        required version as the current version.
+                                    </p>
+                                </div>
+
+                                {/* Architecture relationship */}
+                                <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                                        Architecture Relationship
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                                        Soft delete and blob versioning provide complementary data
+                                        protection layers within Azure Blob Storage. Soft delete
+                                        provides a recovery opportunity following deletion, while
+                                        versioning maintains historical blob states. Together, these
+                                        controls allowed{" "}
+                                        <span className="font-semibold text-slate-900">
+                                            soft-delete-test.txt
+                                        </span>{" "}
+                                        to move from an active state, through deletion and recovery,
+                                        and finally back to a verified current state.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Figure caption */}
+                        <div className="mt-4 border-l-2 border-rose-500 pl-4">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-rose-700">
+                                Figure A7 · Blob Data Protection & Recovery Architecture
+                            </p>
+
+                            <p className="mt-2 text-sm leading-6 text-slate-600">
+                                Recovery architecture demonstrated during Task 1 using{" "}
+                                <span className="font-semibold text-slate-900">
+                                    soft-delete-test.txt
+                                </span>
+                                . The test shows how soft delete and blob versioning prevented the
+                                deletion from immediately becoming permanent data loss. Azure retained
+                                recoverable data, the protected versions were undeleted, and the
+                                required 485-byte blob version was subsequently restored as the
+                                current version.
+                            </p>
+                        </div>
+                    </div>
 
                     {/* =====================================================
             IMPLEMENTATION JOURNEY
@@ -1088,6 +3241,386 @@ export default function TaskOnePage() {
                                 </span>{" "}
                                 to uniquely identify the assessment record within the
                                 Assessment partition.
+                            </p>
+                        </div>
+                    </div>
+                    {/* Figure A8 — Azure Table Storage Architecture */}
+                    <div className="mt-10 rounded-2xl border border-cyan-300 bg-white p-6 shadow-sm">
+                        {/* Section heading */}
+                        <div className="mb-6">
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-700">
+                                Section Architecture
+                            </p>
+
+                            <h3 className="mt-2 text-xl font-bold text-slate-950">
+                                Azure Table Storage & NoSQL Entity Architecture
+                            </h3>
+
+                            <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-600">
+                                This diagram visualises how the{" "}
+                                <strong>AssessmentRecords</strong> table stores structured assessment
+                                information using Azure Table Storage. Rather than using a traditional
+                                relational schema, the implementation organises data as entities
+                                identified by a <strong>PartitionKey</strong> and{" "}
+                                <strong>RowKey</strong>, with additional properties describing the
+                                assessment record.
+                            </p>
+                        </div>
+
+                        {/* Architecture panel */}
+                        <div className="overflow-hidden rounded-2xl border border-cyan-200 bg-slate-50">
+                            {/* Architecture header */}
+                            <div className="border-b border-cyan-200 bg-cyan-50 px-6 py-5">
+                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">
+                                    Azure Table Storage
+                                </p>
+
+                                <h4 className="mt-1 text-lg font-bold text-slate-950">
+                                    Storage Account → Table Service → Table → Entity → Properties
+                                </h4>
+
+                                <p className="mt-1 text-sm text-slate-600">
+                                    NoSQL Service → AssessmentRecords → PartitionKey + RowKey → Structured
+                                    Assessment Data
+                                </p>
+                            </div>
+
+                            {/* Main architecture flow */}
+                            <div className="p-6">
+                                <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-stretch">
+                                    {/* Storage account */}
+                                    <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">
+                                            01 · Storage Layer
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">Storage Account</h5>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            The Azure Storage account provides the cloud storage environment
+                                            containing the Table Storage service used by the assessment.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-blue-100 px-3 py-2 text-xs font-semibold text-blue-800">
+                                            st270907283assessment
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="flex items-center justify-center">
+                                        <div className="text-center">
+                                            <p className="mb-1 text-[9px] font-bold uppercase tracking-wider text-cyan-700">
+                                                Provides
+                                            </p>
+                                            <span className="text-2xl text-cyan-600">→</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Table service */}
+                                    <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-cyan-700">
+                                            02 · NoSQL Service
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            Azure Table Storage
+                                        </h5>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Table Storage provides a lightweight NoSQL data service for storing
+                                            structured information as entities and properties.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-cyan-100 px-3 py-2 text-xs font-semibold text-cyan-800">
+                                            Key-value / NoSQL model
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="flex items-center justify-center">
+                                        <div className="text-center">
+                                            <p className="mb-1 text-[9px] font-bold uppercase tracking-wider text-cyan-700">
+                                                Contains
+                                            </p>
+                                            <span className="text-2xl text-cyan-600">→</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Table */}
+                                    <div className="rounded-xl border border-violet-200 bg-violet-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-violet-700">
+                                            03 · Table
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            AssessmentRecords
+                                        </h5>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            The table provides the logical container for structured assessment
+                                            records stored during the implementation.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-violet-100 px-3 py-2 text-xs font-semibold text-violet-800">
+                                            AssessmentRecords
+                                        </div>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="flex items-center justify-center">
+                                        <div className="text-center">
+                                            <p className="mb-1 text-[9px] font-bold uppercase tracking-wider text-cyan-700">
+                                                Stores
+                                            </p>
+                                            <span className="text-2xl text-cyan-600">→</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Entity */}
+                                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">
+                                            04 · Entity
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-slate-950">
+                                            Assessment Entity
+                                        </h5>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            A single entity represents the assessment record and contains its
+                                            identity keys together with custom application properties.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-emerald-100 px-3 py-2 text-xs font-semibold text-emerald-800">
+                                            Entity successfully stored ✓
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Entity identity */}
+                                <div className="mt-6">
+                                    <div className="mb-3">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-700">
+                                            Entity Identity
+                                        </p>
+
+                                        <h5 className="mt-1 font-bold text-slate-950">
+                                            PartitionKey + RowKey uniquely identify the record
+                                        </h5>
+                                    </div>
+
+                                    <div className="grid gap-4 md:grid-cols-2">
+                                        {/* Partition key */}
+                                        <div className="rounded-xl border border-cyan-200 bg-white p-5">
+                                            <div className="flex items-start justify-between gap-4">
+                                                <div>
+                                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-700">
+                                                        Partitioning
+                                                    </p>
+
+                                                    <h6 className="mt-1 font-bold text-slate-950">
+                                                        PartitionKey
+                                                    </h6>
+                                                </div>
+
+                                                <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800">
+                                                    Assessment
+                                                </span>
+                                            </div>
+
+                                            <p className="mt-3 text-sm leading-6 text-slate-600">
+                                                The PartitionKey groups related entities together. In this
+                                                implementation, <strong>Assessment</strong> represents the logical
+                                                partition for the assessment record.
+                                            </p>
+                                        </div>
+
+                                        {/* Row key */}
+                                        <div className="rounded-xl border border-indigo-200 bg-white p-5">
+                                            <div className="flex items-start justify-between gap-4">
+                                                <div>
+                                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-700">
+                                                        Identification
+                                                    </p>
+
+                                                    <h6 className="mt-1 font-bold text-slate-950">RowKey</h6>
+                                                </div>
+
+                                                <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold text-indigo-800">
+                                                    001
+                                                </span>
+                                            </div>
+
+                                            <p className="mt-3 text-sm leading-6 text-slate-600">
+                                                The RowKey identifies the individual entity within its partition.
+                                                The value <strong>001</strong> uniquely identifies this assessment
+                                                record inside the Assessment partition.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Formula */}
+                                    <div className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 px-5 py-4 text-center">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-700">
+                                            Unique Entity Address
+                                        </p>
+
+                                        <div className="mt-2 flex flex-wrap items-center justify-center gap-3 text-sm font-bold">
+                                            <span className="rounded-lg bg-white px-4 py-2 text-cyan-800 shadow-sm">
+                                                PartitionKey: Assessment
+                                            </span>
+
+                                            <span className="text-lg text-cyan-600">+</span>
+
+                                            <span className="rounded-lg bg-white px-4 py-2 text-indigo-800 shadow-sm">
+                                                RowKey: 001
+                                            </span>
+
+                                            <span className="text-lg text-cyan-600">=</span>
+
+                                            <span className="rounded-lg bg-emerald-100 px-4 py-2 text-emerald-800">
+                                                Unique Entity ✓
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Properties */}
+                                <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5">
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-700">
+                                        Entity Properties
+                                    </p>
+
+                                    <h5 className="mt-1 font-bold text-slate-950">
+                                        Structured Assessment Information
+                                    </h5>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                                        Additional properties describe the assessment record without
+                                        requiring a fixed relational table schema.
+                                    </p>
+
+                                    <div className="mt-4 grid gap-3 md:grid-cols-3">
+                                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                                                Task
+                                            </p>
+                                            <p className="mt-1 text-sm font-bold text-slate-900">
+                                                Azure Storage Assessment
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                                                Status
+                                            </p>
+                                            <p className="mt-1 text-sm font-bold text-emerald-700">
+                                                Completed
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                                                Service
+                                            </p>
+                                            <p className="mt-1 text-sm font-bold text-slate-900">
+                                                Azure Table Storage
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Relational vs NoSQL */}
+                                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                                    <div className="rounded-xl border border-slate-200 bg-white p-5">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                                            Traditional Relational Model
+                                        </p>
+
+                                        <h6 className="mt-1 font-bold text-slate-950">
+                                            Tables, Columns & Relationships
+                                        </h6>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Relational databases generally organise information around defined
+                                            tables, columns, relationships and a structured schema.
+                                        </p>
+                                    </div>
+
+                                    <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-5">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-700">
+                                            Azure Table Storage Model
+                                        </p>
+
+                                        <h6 className="mt-1 font-bold text-slate-950">
+                                            Entities, Keys & Properties
+                                        </h6>
+
+                                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                                            Azure Table Storage uses entities identified by keys, with
+                                            properties attached to each record. This provides a lightweight and
+                                            flexible NoSQL model.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Outcome */}
+                                <div className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+                                    <div className="flex flex-wrap items-start justify-between gap-4">
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">
+                                                Storage Outcome
+                                            </p>
+
+                                            <h6 className="mt-1 font-bold text-slate-950">
+                                                Structured NoSQL entity successfully stored
+                                            </h6>
+                                        </div>
+
+                                        <span className="rounded-full border border-emerald-300 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+                                            Entity Verified
+                                        </span>
+                                    </div>
+
+                                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                                        The completed implementation stored the assessment entity in{" "}
+                                        <strong>AssessmentRecords</strong> using PartitionKey{" "}
+                                        <strong>Assessment</strong>, RowKey <strong>001</strong> and the Task,
+                                        Status and Service properties.
+                                    </p>
+                                </div>
+
+                                {/* Architecture relationship */}
+                                <div className="mt-5 rounded-xl border border-slate-200 bg-white p-5">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                                        Architecture Relationship
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                                        Azure Table Storage operates as the structured NoSQL data component
+                                        within the Task 1 storage architecture. The storage account provides
+                                        the Table service, the <strong>AssessmentRecords</strong> table groups
+                                        the assessment entities, and the combination of{" "}
+                                        <strong>PartitionKey</strong> and <strong>RowKey</strong> uniquely
+                                        identifies each record while additional properties store
+                                        application-specific information.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Figure caption */}
+                        <div className="mt-5 border-l-2 border-cyan-500 pl-4">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-700">
+                                Figure A8 · Azure Table Storage & NoSQL Entity Architecture
+                            </p>
+
+                            <p className="mt-2 text-sm leading-6 text-slate-600">
+                                Logical architecture of the Azure Table Storage implementation completed
+                                during Task 1. The <strong>AssessmentRecords</strong> table stores the
+                                assessment entity using PartitionKey <strong>Assessment</strong> and
+                                RowKey <strong>001</strong> as its unique identity, while the Task, Status
+                                and Service properties provide the structured assessment information.
                             </p>
                         </div>
                     </div>
@@ -1302,6 +3835,339 @@ export default function TaskOnePage() {
                             </p>
                         </div>
 
+                    </div>
+                    {/* Figure A9 — Layered Azure Storage Business Strategy */}
+                    <div className="mt-12 rounded-2xl border border-slate-800 bg-white p-5 sm:p-6">
+                        {/* Section heading */}
+                        <div className="mb-6">
+                            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-600">
+                                Section Architecture
+                            </p>
+
+                            <h3 className="mt-2 text-xl font-bold text-slate-950">
+                                Layered Azure Storage Business Strategy
+                            </h3>
+
+                            <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-600">
+                                This diagram translates the technical controls implemented and tested
+                                throughout Task 1 into a layered organisational storage strategy. Rather
+                                than relying on a single Azure service, the recommended approach combines
+                                preventative access controls, automated protection, recovery mechanisms,
+                                cost optimisation and workload-appropriate storage services.
+                            </p>
+                        </div>
+
+                        {/* Main architecture */}
+                        <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950">
+                            {/* Header */}
+                            <div className="border-b border-slate-700 bg-slate-900 px-5 py-4">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sky-400">
+                                    Recommended Azure Storage Strategy
+                                </p>
+
+                                <h4 className="mt-1 text-lg font-bold text-white">
+                                    Prevent → Protect → Optimise → Support → Business Value
+                                </h4>
+
+                                <p className="mt-1 text-xs text-slate-400">
+                                    Technical controls validated during Task 1 translated into
+                                    organisational outcomes
+                                </p>
+                            </div>
+
+                            <div className="p-4 sm:p-5">
+                                {/* Business data */}
+                                <div className="mb-5 rounded-xl border border-sky-500/40 bg-sky-500/10 p-4 text-center">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-sky-400">
+                                        Organisational Data
+                                    </p>
+
+                                    <p className="mt-1 text-base font-bold text-white">
+                                        Business Storage Workloads
+                                    </p>
+
+                                    <p className="mt-1 text-xs leading-5 text-slate-300">
+                                        Uploaded objects, shared files and structured application records
+                                        require different combinations of security, protection, recovery and
+                                        storage management.
+                                    </p>
+                                </div>
+
+                                {/* Strategy layers */}
+                                <div className="grid gap-3 lg:grid-cols-4">
+                                    {/* Prevent */}
+                                    <div className="rounded-xl border border-blue-500/40 bg-blue-500/10 p-4">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-400">
+                                            01 · Prevent
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-white">
+                                            Control Access
+                                        </h5>
+
+                                        <p className="mt-2 text-xs leading-5 text-slate-300">
+                                            Restrict unnecessary permissions before they become a security
+                                            risk.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-blue-500/15 p-3">
+                                            <p className="text-xs font-semibold text-blue-200">
+                                                Azure RBAC
+                                            </p>
+                                            <p className="mt-1 text-[11px] leading-4 text-slate-300">
+                                                Least-privilege access using Storage Blob Data Reader.
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-3 rounded-md bg-blue-400/10 px-3 py-2 text-[11px] font-semibold text-blue-300">
+                                            ✓ Read allowed · Delete denied
+                                        </div>
+                                    </div>
+
+                                    {/* Protect */}
+                                    <div className="rounded-xl border border-purple-500/40 bg-purple-500/10 p-4">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-purple-400">
+                                            02 · Protect
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-white">
+                                            Preserve Recoverable Data
+                                        </h5>
+
+                                        <p className="mt-2 text-xs leading-5 text-slate-300">
+                                            Reduce the impact of deletion, modification and operational
+                                            mistakes.
+                                        </p>
+
+                                        <div className="mt-4 space-y-2">
+                                            <div className="rounded-md bg-purple-500/15 px-3 py-2 text-[11px] font-semibold text-purple-200">
+                                                Automated Blob Backup
+                                            </div>
+
+                                            <div className="rounded-md bg-purple-500/15 px-3 py-2 text-[11px] font-semibold text-purple-200">
+                                                Blob Versioning
+                                            </div>
+
+                                            <div className="rounded-md bg-purple-500/15 px-3 py-2 text-[11px] font-semibold text-purple-200">
+                                                Soft Delete
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-3 rounded-md bg-green-400/10 px-3 py-2 text-[11px] font-semibold text-green-300">
+                                            ✓ Backup & recovery verified
+                                        </div>
+                                    </div>
+
+                                    {/* Optimise */}
+                                    <div className="rounded-xl border border-amber-500/40 bg-amber-500/10 p-4">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">
+                                            03 · Optimise
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-white">
+                                            Manage Storage Cost
+                                        </h5>
+
+                                        <p className="mt-2 text-xs leading-5 text-slate-300">
+                                            Align the storage tier with changing data-access patterns over
+                                            time.
+                                        </p>
+
+                                        <div className="mt-4 rounded-lg bg-amber-500/15 p-3">
+                                            <p className="text-xs font-semibold text-amber-200">
+                                                Lifecycle Management
+                                            </p>
+
+                                            <p className="mt-1 text-[11px] leading-4 text-slate-300">
+                                                Automatically transition qualifying older block blobs from Hot
+                                                storage to Cool storage.
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-3 rounded-md bg-amber-400/10 px-3 py-2 text-[11px] font-semibold text-amber-300">
+                                            Hot → 30 days → Cool
+                                        </div>
+                                    </div>
+
+                                    {/* Support */}
+                                    <div className="rounded-xl border border-cyan-500/40 bg-cyan-500/10 p-4">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-400">
+                                            04 · Support
+                                        </p>
+
+                                        <h5 className="mt-2 font-bold text-white">
+                                            Match Service to Workload
+                                        </h5>
+
+                                        <p className="mt-2 text-xs leading-5 text-slate-300">
+                                            Select Azure storage services according to the type of data and
+                                            access requirement.
+                                        </p>
+
+                                        <div className="mt-4 space-y-2">
+                                            <div className="rounded-md bg-cyan-500/15 px-3 py-2">
+                                                <p className="text-xs font-semibold text-cyan-200">
+                                                    Azure Files
+                                                </p>
+                                                <p className="mt-1 text-[11px] text-slate-300">
+                                                    Managed file sharing
+                                                </p>
+                                            </div>
+
+                                            <div className="rounded-md bg-cyan-500/15 px-3 py-2">
+                                                <p className="text-xs font-semibold text-cyan-200">
+                                                    Azure Table Storage
+                                                </p>
+                                                <p className="mt-1 text-[11px] text-slate-300">
+                                                    Lightweight structured NoSQL data
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* arrows / progression */}
+                                <div className="my-5 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                                    <span>Prevent Risk</span>
+                                    <span className="text-blue-400">→</span>
+                                    <span>Preserve Data</span>
+                                    <span className="text-purple-400">→</span>
+                                    <span>Optimise Cost</span>
+                                    <span className="text-amber-400">→</span>
+                                    <span>Support Workloads</span>
+                                </div>
+
+                                {/* Business value */}
+                                <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4">
+                                    <div className="flex flex-wrap items-start justify-between gap-3">
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-400">
+                                                Business Value
+                                            </p>
+
+                                            <h5 className="mt-1 font-bold text-white">
+                                                A More Resilient and Manageable Storage Environment
+                                            </h5>
+                                        </div>
+
+                                        <span className="rounded-full border border-emerald-400/50 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald-300">
+                                            Layered Strategy
+                                        </span>
+                                    </div>
+
+                                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                                        <div className="rounded-lg bg-slate-950/50 p-3">
+                                            <p className="text-xs font-bold text-white">Security</p>
+                                            <p className="mt-1 text-[11px] leading-4 text-slate-300">
+                                                Reduce unnecessary access and permissions.
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg bg-slate-950/50 p-3">
+                                            <p className="text-xs font-bold text-white">Resilience</p>
+                                            <p className="mt-1 text-[11px] leading-4 text-slate-300">
+                                                Preserve recoverable copies and historical states.
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg bg-slate-950/50 p-3">
+                                            <p className="text-xs font-bold text-white">
+                                                Operational Efficiency
+                                            </p>
+                                            <p className="mt-1 text-[11px] leading-4 text-slate-300">
+                                                Automate backup and storage-management operations.
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg bg-slate-950/50 p-3">
+                                            <p className="text-xs font-bold text-white">Cost Awareness</p>
+                                            <p className="mt-1 text-[11px] leading-4 text-slate-300">
+                                                Align storage tiers with changing access patterns.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Evidence connection */}
+                                <div className="mt-4 rounded-xl border border-slate-700 bg-slate-900 p-4">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-sky-400">
+                                        Tested During Task 1
+                                    </p>
+
+                                    <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                                        <div className="rounded-lg border border-slate-700 bg-slate-950 p-3">
+                                            <p className="text-xs font-semibold text-white">
+                                                Access Control
+                                            </p>
+                                            <p className="mt-1 text-[11px] text-slate-400">
+                                                RBAC read access and denied deletion
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg border border-slate-700 bg-slate-950 p-3">
+                                            <p className="text-xs font-semibold text-white">
+                                                Data Protection
+                                            </p>
+                                            <p className="mt-1 text-[11px] text-slate-400">
+                                                Backup, versioning and recovery
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg border border-slate-700 bg-slate-950 p-3">
+                                            <p className="text-xs font-semibold text-white">
+                                                Cost Management
+                                            </p>
+                                            <p className="mt-1 text-[11px] text-slate-400">
+                                                Lifecycle transition policy
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg border border-slate-700 bg-slate-950 p-3">
+                                            <p className="text-xs font-semibold text-white">
+                                                Storage Models
+                                            </p>
+                                            <p className="mt-1 text-[11px] text-slate-400">
+                                                Blob, Files and Table Storage
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Recommendation */}
+                                <div className="mt-4 rounded-xl border border-sky-500/30 bg-sky-500/10 p-4">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-sky-400">
+                                        Recommended Strategy
+                                    </p>
+
+                                    <p className="mt-2 text-sm font-semibold leading-6 text-white">
+                                        No single Azure Storage feature provides the complete solution.
+                                    </p>
+
+                                    <p className="mt-1 text-xs leading-5 text-slate-300">
+                                        A stronger organisational design combines preventative controls,
+                                        automated protection, recovery mechanisms, cost optimisation and
+                                        workload-appropriate storage services as complementary layers of the
+                                        overall storage architecture.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Figure caption */}
+                        <div className="mt-4 border-l-2 border-slate-800 pl-4">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-700">
+                                Figure A9 · Layered Azure Storage Business Strategy
+                            </p>
+
+                            <p className="mt-2 text-xs leading-5 text-slate-600">
+                                Recommended organisational storage strategy derived from the practical
+                                implementation and testing completed during Task 1. The architecture
+                                combines least-privilege access, automated backup, versioning, soft
+                                delete, lifecycle management and workload-appropriate Azure storage
+                                services to support security, resilience, operational efficiency and
+                                cost-aware storage management.
+                            </p>
+                        </div>
                     </div>
 
 
@@ -1621,7 +4487,7 @@ export default function TaskOnePage() {
                     <div className="mt-14 rounded-2xl border border-slate-200 bg-slate-950 p-8 text-white sm:p-10">
 
                         <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-300">
-                            Recommended Storage Strategy
+                            Final Business Recommendation
                         </p>
 
                         <h3 className="mt-3 text-2xl font-bold tracking-tight">
@@ -1755,7 +4621,12 @@ export default function TaskOnePage() {
                             isolated exercise, I used the practical implementation to
                             understand how storage, automation, access control, recovery,
                             lifecycle management and structured data services can work
-                            together.
+                            together.<br />
+
+                            The architecture diagrams presented throughout the report
+                            also helped me visualise these relationships as parts of one connected
+                            Azure solution rather than viewing each service as an isolated
+                            configuration task.
                         </p>
 
                         <p>
