@@ -34,9 +34,9 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-  run: |
-    npm ci
-    npm install lightningcss-linux-x64-gnu --no-save
+        run: |
+          npm ci
+          npm install lightningcss-linux-x64-gnu --no-save
 
       - name: Build Next.js site
         run: npm run build
