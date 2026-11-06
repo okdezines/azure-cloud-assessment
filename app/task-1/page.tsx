@@ -585,7 +585,16 @@ export default function TaskOnePage() {
 
                                         <p className="mt-3 text-xs leading-5 text-slate-600">
                                             Object storage service used for unstructured assessment
-                                            data and automated processing.
+                                            data and automated processing{" "}
+                                            <a
+                                                href="https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="font-semibold text-blue-600 hover:underline"
+                                            >
+                                                [2]
+                                            </a>
+                                            .
                                         </p>
                                     </div>
 
@@ -694,6 +703,21 @@ export default function TaskOnePage() {
                                         </div>
                                     </div>
                                 </div>
+                                {/* LRS technical reference */}
+                                <p className="mt-4 text-center text-xs leading-5 text-slate-500">
+                                    Locally redundant storage (LRS) maintains multiple copies of data
+                                    within a single Azure region, providing local redundancy for the
+                                    storage account{" "}
+                                    <a
+                                        href="https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="font-semibold text-blue-600 hover:underline"
+                                    >
+                                        [11]
+                                    </a>
+                                    .
+                                </p>
 
                                 {/* Architecture Meaning */}
                                 <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5">
@@ -711,6 +735,7 @@ export default function TaskOnePage() {
                                         container stores the block blobs used by the later automation,
                                         security, recovery and lifecycle-management stages.
                                     </p>
+
                                 </div>
                             </div>
                         </div>
@@ -739,7 +764,16 @@ export default function TaskOnePage() {
                         infrastructure required for the assessment. A storage account was
                         configured to provide a central cloud storage platform for blob
                         data, security controls, versioning, recovery and lifecycle
-                        management.
+                        management{" "}
+                        <a
+                            href="https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-semibold text-blue-600 hover:underline"
+                        >
+                            [1]
+                        </a>
+                        .
                     </p>
 
                     {/* Infrastructure summary */}
@@ -781,6 +815,7 @@ export default function TaskOnePage() {
                                 Primary Azure region hosting the assessment storage account.
                             </p>
                         </div>
+
                     </div>
 
                     <ImplementationJourney
@@ -799,6 +834,7 @@ export default function TaskOnePage() {
                                 caption:
                                     "Primary Azure Storage account configuration showing the selected region, performance tier, redundancy and access settings.",
                             },
+
                             {
                                 figure: 2,
                                 stage: "Stage 02",
@@ -825,6 +861,7 @@ export default function TaskOnePage() {
                         ]}
                     />
 
+
                     {/* Evidence */}
                     <div className="mt-14 space-y-14">
                         <EvidenceCard
@@ -838,6 +875,7 @@ export default function TaskOnePage() {
                             result="The primary storage environment was successfully established and provided the Azure Storage foundation required for Blob Storage, Azure Files, Table Storage, security controls, lifecycle management and data-protection testing."
                             significance="This provides the primary evidence that the underlying Azure Storage infrastructure was operational. The earlier journey screenshots document how the environment was configured and developed, while this evidence confirms the resulting storage environment that supported the later implementation activities."
                         />
+
                     </div>
 
                     {/* =========================================================
@@ -1167,7 +1205,16 @@ export default function TaskOnePage() {
                             Functions and Azure Blob Storage. The{" "}
                             <strong>assessment-data</strong> container acted as the primary
                             source, while the <strong>blobBackupTrigger</strong> Function
-                            monitored the container for newly created blob objects.
+                            monitored the container for newly created blob objects{" "}
+                            <a
+                                href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-trigger"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="font-semibold text-blue-600 hover:underline"
+                            >
+                                [3]
+                            </a>
+                            .
                         </p>
 
                         <p className="mt-4 max-w-3xl leading-7 text-slate-600">
@@ -1456,7 +1503,16 @@ export default function TaskOnePage() {
                                 container did not simply store the test object; the creation of
                                 the object became the event that initiated further processing.
                                 Azure Functions provided the application layer that responded to
-                                that event and performed the backup operation.
+                                that event and performed the backup operation{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [4]
+                                </a>
+                                .
                             </p>
 
                             <p className="mt-4 max-w-4xl leading-7 text-slate-600">
@@ -1492,7 +1548,16 @@ export default function TaskOnePage() {
                                 privilege. A dedicated Microsoft Entra identity was created and
                                 assigned the Storage Blob Data Reader role so that access to
                                 Azure Blob Storage could be tested without granting unnecessary
-                                write, modification or deletion permissions.
+                                write, modification or deletion permissions{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/common/storage-auth-aad-rbac-portal"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [5]
+                                </a>
+                                .
                             </p>
 
                             {/* =====================================================
@@ -1805,7 +1870,16 @@ export default function TaskOnePage() {
                                     without granting broader modification or deletion permissions.
                                     The HTTP 403 AuthorizationPermissionMismatch response
                                     demonstrated that Azure enforced this restriction when an
-                                    operation exceeded the permissions assigned to the identity.
+                                    operation exceeded the permissions assigned to the identity{" "}
+                                    <a
+                                        href="https://learn.microsoft.com/en-us/azure/storage/common/storage-auth-aad-rbac-portal"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="font-semibold text-blue-600 hover:underline"
+                                    >
+                                        [5]
+                                    </a>
+                                    .
                                 </p>
 
                                 <p className="mt-4 max-w-4xl leading-7 text-slate-600">
@@ -1839,7 +1913,16 @@ export default function TaskOnePage() {
                             created within the Azure Storage account, configured for the
                             assessment workload and tested with a sample file. The connection
                             configuration was then reviewed to demonstrate how the share could
-                            be mounted and accessed from a client operating system.
+                            be mounted and accessed from a client operating system{" "}
+                            <a
+                                href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="font-semibold text-blue-600 hover:underline"
+                            >
+                                [6]
+                            </a>
+                            .
                         </p>
 
                         {/* =====================================================
@@ -2178,7 +2261,16 @@ export default function TaskOnePage() {
                                     between object storage and managed file storage. Azure Blob
                                     Storage stores data as objects inside containers, whereas
                                     Azure Files provides file shares that can be accessed using
-                                    familiar file-sharing protocols such as SMB.
+                                    familiar file-sharing protocols such as SMB{" "}
+                                    <a
+                                        href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="font-semibold text-blue-600 hover:underline"
+                                    >
+                                        [6]
+                                    </a>
+                                    .
                                 </p>
 
                                 <p>
@@ -2234,7 +2326,16 @@ export default function TaskOnePage() {
                         </span>{" "}
                         was created to identify older block blobs within the assessment
                         workload and transition qualifying data from the Hot access tier to
-                        the lower-cost Cool tier.
+                        the lower-cost Cool tier{" "}
+                        <a
+                            href="https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-semibold text-blue-600 hover:underline"
+                        >
+                            [7]
+                        </a>
+                        .
                     </p>
                     {/* =====================================================
     FIGURE A6 — LIFECYCLE MANAGEMENT ARCHITECTURE
@@ -2608,7 +2709,16 @@ export default function TaskOnePage() {
                                 management is a policy-driven method of managing data as its
                                 usage pattern changes. Rather than manually reviewing older
                                 blobs and changing their access tiers, Azure can evaluate
-                                defined conditions and perform the transition automatically.
+                                defined conditions and perform the transition automatically{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [7]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -2671,7 +2781,25 @@ export default function TaskOnePage() {
                         </span>
                         , observed how Azure retained the deleted data through versioning
                         and soft-delete behaviour, and restored the protected blob to an
-                        active current version.
+                        active current version{" "}
+                        <a
+                            href="https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-semibold text-blue-600 hover:underline"
+                        >
+                            [8]
+                        </a>
+                        {" "}
+                        <a
+                            href="https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-semibold text-blue-600 hover:underline"
+                        >
+                            [9]
+                        </a>
+                        .
                     </p>
 
                     {/* =====================================================
@@ -3131,7 +3259,25 @@ export default function TaskOnePage() {
                                 related but different roles. Soft delete provides a recovery
                                 opportunity after deletion, while versioning preserves
                                 historical states of blob data. Together they provide stronger
-                                protection than relying on a single current copy of an object.
+                                protection than relying on a single current copy of an object{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [9]
+                                </a>
+                                {" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [8]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -3154,6 +3300,9 @@ export default function TaskOnePage() {
                     </div>
                 </div>
             </section>
+
+
+
             {/* =====================================================
     SECTION 07 — AZURE TABLE STORAGE
 ===================================================== */}
@@ -3181,7 +3330,16 @@ export default function TaskOnePage() {
                         and added a structured entity containing assessment information.
                         The implementation demonstrates how Azure Table Storage organises
                         data using entities, properties, a PartitionKey and a RowKey rather
-                        than a traditional relational table structure.
+                        than a traditional relational table structure{" "}
+                        <a
+                            href="https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-semibold text-blue-600 hover:underline"
+                        >
+                            [10]
+                        </a>
+                        .
                     </p>
 
                     {/* =====================================================
@@ -3713,7 +3871,16 @@ export default function TaskOnePage() {
                                 are important parts of the Table Storage data model. The
                                 PartitionKey groups related entities, while the RowKey
                                 identifies a specific entity within that partition. Their
-                                combination provides a way to uniquely address an entity.
+                                combination provides a way to uniquely address an entity{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [10]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4186,12 +4353,20 @@ export default function TaskOnePage() {
                         </h3>
 
                         <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
-
                             <p>
                                 The organisation should use event-driven automation to protect
                                 files uploaded by external stakeholders. During this assessment,
                                 a Blob Trigger detected a new object and initiated the backup
-                                workflow without requiring a manual copy operation.
+                                workflow without requiring a manual copy operation{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-trigger"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [3]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4236,7 +4411,16 @@ export default function TaskOnePage() {
                                 the responsibilities of each user rather than providing broad
                                 permissions by default. The RBAC testing performed during this
                                 assessment demonstrated this principle by allowing blob data to
-                                be read while a delete operation was denied.
+                                be read while a delete operation was denied{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [5]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4275,10 +4459,19 @@ export default function TaskOnePage() {
                         <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
 
                             <p>
-                                Azure Files can provide managed file shares for workloads that
-                                still require traditional file-system access. This is useful for
-                                organisations that need centralised shared files while gradually
-                                adopting cloud-based infrastructure.
+                                Azure Files can provide managed file shares for workloads that still
+                                require traditional file-system access. This is useful for organisations
+                                that need centralised shared files while gradually adopting cloud-based
+                                infrastructure{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [6]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4319,10 +4512,18 @@ export default function TaskOnePage() {
                         <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
 
                             <p>
-                                Blob versioning should be enabled for important business data
-                                where accidental overwrites or modifications could affect
-                                operations. Versioning preserves previous states of a blob when
-                                changes occur.
+                                Blob versioning should be enabled for important business data where
+                                accidental overwrites or modifications could affect operations.
+                                Versioning preserves previous states of a blob when changes occur{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [8]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4363,9 +4564,18 @@ export default function TaskOnePage() {
                         <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
 
                             <p>
-                                Soft delete should be used to reduce the risk that an accidental
-                                deletion immediately becomes permanent data loss. Instead, Azure
-                                can retain protected data for a defined recovery period.
+                                Soft delete should be used to reduce the risk that an accidental deletion
+                                immediately becomes permanent data loss. Instead, Azure can retain
+                                protected data for a defined recovery period{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [9]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4415,10 +4625,19 @@ export default function TaskOnePage() {
                             </p>
 
                             <p>
-                                In this assessment, the lifecycle policy targeted assessment data
-                                and configured qualifying block blobs to transition to the Cool
-                                tier after 30 days without modification. The data was retained;
-                                only its storage tier was changed.
+                                In this assessment, the lifecycle policy targeted assessment data and
+                                configured qualifying block blobs to transition to the Cool tier after
+                                30 days without modification. The data was retained; only its storage
+                                tier was changed{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [7]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4458,11 +4677,19 @@ export default function TaskOnePage() {
                             </p>
 
                             <p>
-                                The AssessmentRecords implementation demonstrated how an entity
-                                can be organised using a PartitionKey, RowKey and additional
-                                properties. This model can be useful for simple application
-                                records, status information, metadata and other structured
-                                datasets.
+                                The AssessmentRecords implementation demonstrated how an entity can be
+                                organised using a PartitionKey, RowKey and additional properties. This
+                                model can be useful for simple application records, status information,
+                                metadata and other structured datasets{" "}
+                                <a
+                                    href="https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-semibold text-blue-600 hover:underline"
+                                >
+                                    [10]
+                                </a>
+                                .
                             </p>
 
                             <p>
@@ -4741,6 +4968,396 @@ export default function TaskOnePage() {
                         </div>
                     </div>
 
+                    {/* =====================================================
+    FIGURE A10 — TASK 1 ASSESSMENT & LEARNING FRAMEWORK
+====================================================== */}
+
+                    <div className="mt-16 rounded-2xl border border-blue-200 bg-white p-6 sm:p-8">
+                        {/* Figure introduction */}
+                        <div>
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                                Final Task 1 Architecture
+                            </p>
+
+                            <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
+                                Task 1 Assessment & Learning Framework
+                            </h3>
+
+                            <p className="mt-4 max-w-4xl text-sm leading-7 text-slate-600">
+                                This diagram brings together the practical and analytical approach used
+                                throughout Task 1. The Azure solution was not only implemented, but
+                                deliberately tested, supported with evidence, technically interpreted
+                                and translated into business recommendations.
+                            </p>
+                        </div>
+
+                        {/* Main framework */}
+                        <div className="mt-8 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950">
+                            {/* Header */}
+                            <div className="border-b border-slate-800 px-6 py-6 sm:px-8">
+                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-300">
+                                    Azure Cloud Engineering · Task 1
+                                </p>
+
+                                <h4 className="mt-2 text-xl font-bold text-white sm:text-2xl">
+                                    From Implementation to Cloud Engineering Understanding
+                                </h4>
+
+                                <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-300">
+                                    Implement → Test → Capture Evidence → Interpret → Apply
+                                </p>
+                            </div>
+
+                            <div className="p-5 sm:p-7">
+                                {/* =================================================
+                01 — IMPLEMENT
+            ================================================== */}
+                                <div className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-5">
+                                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+                                                01 · Implement
+                                            </p>
+
+                                            <h5 className="mt-2 text-lg font-bold text-white">
+                                                Build the Azure Storage Solution
+                                            </h5>
+
+                                            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+                                                Configure the Azure services and controls required to
+                                                create the Task 1 cloud storage environment.
+                                            </p>
+                                        </div>
+
+                                        <div className="shrink-0 rounded-lg border border-blue-400/20 bg-slate-900 px-4 py-3 text-xs font-semibold text-blue-200">
+                                            BUILD
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                                        {[
+                                            "Blob Storage",
+                                            "Azure Functions",
+                                            "Azure RBAC",
+                                            "Azure Files",
+                                            "Lifecycle Management",
+                                            "Soft Delete",
+                                            "Blob Versioning",
+                                            "Table Storage",
+                                        ].map((item) => (
+                                            <div
+                                                key={item}
+                                                className="rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-3 text-center text-xs font-semibold text-slate-200"
+                                            >
+                                                {item}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Connector */}
+                                <div className="flex justify-center py-3">
+                                    <div className="flex flex-col items-center">
+                                        <div className="h-5 w-px bg-blue-400/50" />
+                                        <span className="text-lg text-blue-300">↓</span>
+                                    </div>
+                                </div>
+
+                                {/* =================================================
+                02 — TEST
+            ================================================== */}
+                                <div className="rounded-xl border border-purple-500/30 bg-purple-500/10 p-5">
+                                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-purple-300">
+                                                02 · Test
+                                            </p>
+
+                                            <h5 className="mt-2 text-lg font-bold text-white">
+                                                Validate Azure Behaviour
+                                            </h5>
+
+                                            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+                                                Perform practical tests to confirm that the configured
+                                                services and controls behave as intended rather than
+                                                assuming that configuration alone proves success.
+                                            </p>
+                                        </div>
+
+                                        <div className="shrink-0 rounded-lg border border-purple-400/20 bg-slate-900 px-4 py-3 text-xs font-semibold text-purple-200">
+                                            VERIFY
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                                        {[
+                                            "Trigger Backup",
+                                            "Read Blob",
+                                            "Deny Delete",
+                                            "Recover Data",
+                                            "Verify Storage",
+                                        ].map((item) => (
+                                            <div
+                                                key={item}
+                                                className="rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-3 text-center text-xs font-semibold text-slate-200"
+                                            >
+                                                {item}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Connector */}
+                                <div className="flex justify-center py-3">
+                                    <div className="flex flex-col items-center">
+                                        <div className="h-5 w-px bg-purple-400/50" />
+                                        <span className="text-lg text-purple-300">↓</span>
+                                    </div>
+                                </div>
+
+                                {/* =================================================
+                03 — CAPTURE EVIDENCE
+            ================================================== */}
+                                <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-5">
+                                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-300">
+                                                03 · Capture Evidence
+                                            </p>
+
+                                            <h5 className="mt-2 text-lg font-bold text-white">
+                                                Record Observable Technical Outcomes
+                                            </h5>
+
+                                            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+                                                Capture evidence that demonstrates important
+                                                configuration stages, execution behaviour and verified
+                                                results from the Azure environment.
+                                            </p>
+                                        </div>
+
+                                        <div className="shrink-0 rounded-lg border border-cyan-400/20 bg-slate-900 px-4 py-3 text-xs font-semibold text-cyan-200">
+                                            PROVE
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                                        <div className="rounded-lg border border-slate-700 bg-slate-900/80 p-4">
+                                            <p className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-300">
+                                                Configuration
+                                            </p>
+                                            <p className="mt-2 text-xs leading-5 text-slate-300">
+                                                Azure resource settings and implemented controls.
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg border border-slate-700 bg-slate-900/80 p-4">
+                                            <p className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-300">
+                                                Execution
+                                            </p>
+                                            <p className="mt-2 text-xs leading-5 text-slate-300">
+                                                Function activity, access tests and recovery actions.
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-lg border border-slate-700 bg-slate-900/80 p-4">
+                                            <p className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-300">
+                                                Results
+                                            </p>
+                                            <p className="mt-2 text-xs leading-5 text-slate-300">
+                                                Successful outcomes and observable Azure behaviour.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Connector */}
+                                <div className="flex justify-center py-3">
+                                    <div className="flex flex-col items-center">
+                                        <div className="h-5 w-px bg-cyan-400/50" />
+                                        <span className="text-lg text-cyan-300">↓</span>
+                                    </div>
+                                </div>
+
+                                {/* =================================================
+                04 — INTERPRET
+            ================================================== */}
+                                <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-5">
+                                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">
+                                                04 · Interpret
+                                            </p>
+
+                                            <h5 className="mt-2 text-lg font-bold text-white">
+                                                Explain the Technical Significance
+                                            </h5>
+
+                                            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+                                                Interpret the evidence so that the report demonstrates
+                                                technical understanding rather than only showing that a
+                                                configuration task was completed.
+                                            </p>
+                                        </div>
+
+                                        <div className="shrink-0 rounded-lg border border-amber-400/20 bg-slate-900 px-4 py-3 text-xs font-semibold text-amber-200">
+                                            UNDERSTAND
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-5 grid gap-3 sm:grid-cols-4">
+                                        {[
+                                            "Purpose",
+                                            "Action",
+                                            "Result",
+                                            "Technical Significance",
+                                        ].map((item, index) => (
+                                            <div
+                                                key={item}
+                                                className="rounded-lg border border-slate-700 bg-slate-900/80 p-4 text-center"
+                                            >
+                                                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-amber-300">
+                                                    {String(index + 1).padStart(2, "0")}
+                                                </p>
+
+                                                <p className="mt-2 text-xs font-semibold text-slate-200">
+                                                    {item}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Connector */}
+                                <div className="flex justify-center py-3">
+                                    <div className="flex flex-col items-center">
+                                        <div className="h-5 w-px bg-amber-400/50" />
+                                        <span className="text-lg text-amber-300">↓</span>
+                                    </div>
+                                </div>
+
+                                {/* =================================================
+                05 — APPLY
+            ================================================== */}
+                                <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-5">
+                                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300">
+                                                05 · Apply
+                                            </p>
+
+                                            <h5 className="mt-2 text-lg font-bold text-white">
+                                                Translate Technical Findings into Business Value
+                                            </h5>
+
+                                            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+                                                Use the validated technical findings to recommend how
+                                                Azure Storage capabilities can support organisational
+                                                security, resilience, efficiency and cost management.
+                                            </p>
+                                        </div>
+
+                                        <div className="shrink-0 rounded-lg border border-emerald-400/20 bg-slate-900 px-4 py-3 text-xs font-semibold text-emerald-200">
+                                            APPLY
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                                        {[
+                                            "Security",
+                                            "Resilience",
+                                            "Operational Efficiency",
+                                            "Cost Awareness",
+                                        ].map((item) => (
+                                            <div
+                                                key={item}
+                                                className="rounded-lg border border-emerald-500/20 bg-slate-900/80 px-3 py-3 text-center text-xs font-semibold text-emerald-100"
+                                            >
+                                                {item}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Final connector */}
+                                <div className="flex justify-center py-4">
+                                    <div className="flex flex-col items-center">
+                                        <div className="h-6 w-px bg-emerald-400/50" />
+                                        <span className="text-xl text-emerald-300">↓</span>
+                                    </div>
+                                </div>
+
+                                {/* =================================================
+                FINAL OUTCOME
+            ================================================== */}
+                                <div className="rounded-xl border border-emerald-400/40 bg-emerald-500/10 p-6 text-center">
+                                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
+                                        Task 1 Learning Outcome
+                                    </p>
+
+                                    <h5 className="mt-3 text-xl font-bold text-white sm:text-2xl">
+                                        Cloud Engineering Understanding
+                                    </h5>
+
+                                    <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-slate-300">
+                                        The implementation demonstrated how Azure Storage services,
+                                        automation, access control, data protection, lifecycle
+                                        management and structured storage can operate as connected
+                                        components of a wider cloud architecture.
+                                    </p>
+
+                                    <div className="mt-5 flex flex-wrap justify-center gap-2">
+                                        {[
+                                            "IMPLEMENTED",
+                                            "TESTED",
+                                            "EVIDENCED",
+                                            "INTERPRETED",
+                                            "APPLIED",
+                                        ].map((item) => (
+                                            <span
+                                                key={item}
+                                                className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[10px] font-bold tracking-[0.14em] text-emerald-200"
+                                            >
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Architecture relationship */}
+                        <div className="mt-6 rounded-xl border border-blue-100 bg-blue-50 p-5">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                                Assessment Relationship
+                            </p>
+
+                            <p className="mt-3 text-sm leading-7 text-slate-700">
+                                The Task 1 workflow progressed from building Azure resources to
+                                validating their behaviour and documenting observable evidence. The
+                                evidence was then interpreted to explain its technical significance
+                                and used to develop practical business recommendations. This created
+                                a direct relationship between practical implementation, assessment
+                                evidence and cloud engineering understanding.
+                            </p>
+                        </div>
+
+                        {/* Figure caption */}
+                        <div className="mt-6 border-l-2 border-blue-600 pl-4">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                                Figure A10 · Task 1 Assessment & Learning Framework
+                            </p>
+
+                            <p className="mt-2 text-sm leading-6 text-slate-600">
+                                Final synthesis of the assessment approach used throughout Task 1,
+                                showing the progression from Azure implementation and practical
+                                testing through evidence collection, technical interpretation and
+                                business application. The framework demonstrates how the practical
+                                activities contributed to a broader understanding of Azure cloud
+                                storage architecture.
+                            </p>
+                        </div>
+                    </div>
                     {/* =====================================================
             ASSESSMENT ALIGNMENT
         ====================================================== */}
