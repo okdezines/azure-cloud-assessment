@@ -23,7 +23,17 @@ export default function ImplementationJourney({
     description = "Selected stages showing how the implementation progressed from initial configuration through to the completed solution.",
     items,
 }: ImplementationJourneyProps) {
-    const [selectedImage, setSelectedImage] = useState<JourneyItem | null>(null);
+    const [selectedImage, setSelectedImage] =
+        useState<JourneyItem | null>(null);
+
+    const getImageSrc = (src: string) => {
+        const basePath =
+            process.env.NODE_ENV === "production"
+                ? "/azure-cloud-assessment"
+                : "";
+
+        return `${basePath}${src}`;
+    };
 
     return (
         <>
@@ -59,7 +69,7 @@ export default function ImplementationJourney({
                             >
                                 <div className="aspect-[16/9] overflow-hidden">
                                     <img
-                                        src={item.image}
+                                        src={getImageSrc(item.image)}
                                         alt={item.alt}
                                         className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
                                     />
@@ -155,7 +165,7 @@ export default function ImplementationJourney({
                         {/* Full evidence image */}
                         <div className="max-h-[75vh] overflow-auto bg-slate-100 p-3 md:p-5">
                             <img
-                                src={selectedImage.image}
+                                src={getImageSrc(selectedImage.image)}
                                 alt={selectedImage.alt}
                                 className="mx-auto h-auto max-w-full rounded-lg"
                             />

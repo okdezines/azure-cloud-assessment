@@ -27,6 +27,15 @@ export default function EvidenceCard({
 }: EvidenceCardProps) {
     const [isOpen, setIsOpen] = useState(false);
 
+    const getImageSrc = (src: string) => {
+        const basePath =
+            process.env.NODE_ENV === "production"
+                ? "/azure-cloud-assessment"
+                : "";
+
+        return `${basePath}${src}`;
+    };
+
     // Close the fullscreen image with the Escape key
     useEffect(() => {
         const handleEscape = (event: KeyboardEvent) => {
@@ -81,7 +90,7 @@ export default function EvidenceCard({
                             aria-label={`Enlarge Figure ${figure}: ${alt}`}
                         >
                             <img
-                                src={image}
+                                src={getImageSrc(image)}
                                 alt={alt}
                                 className="w-full transition duration-300 group-hover:scale-[1.01]"
                             />
@@ -125,7 +134,7 @@ export default function EvidenceCard({
 
                     {/* Fullscreen image */}
                     <img
-                        src={image}
+                        src={getImageSrc(image)}
                         alt={alt}
                         onClick={(event) => event.stopPropagation()}
                         className="max-h-[92vh] max-w-[96vw] object-contain shadow-2xl"
