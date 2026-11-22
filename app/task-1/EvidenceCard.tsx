@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 type EvidenceCardProps = {
-    figure: number;
+    figure: number | string;
     title: string;
     image: string;
     alt: string;
